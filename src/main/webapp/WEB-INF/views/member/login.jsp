@@ -50,8 +50,7 @@
 <body>
   <main>	
 
-    <!-- 메뉴 리스트 -->
-    <%@include file="/WEB-INF/include/menus.jsp" %>
+    <!-- 로그인 -->
 	
 	<%-- <h2>${ menu_id }게시물 목록</h2> --%>
 	<h2>${ menuDTO.menu_name } 게시물 목록</h2> 
