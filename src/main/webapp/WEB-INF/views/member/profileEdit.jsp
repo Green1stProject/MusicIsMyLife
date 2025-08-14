@@ -38,7 +38,7 @@
   .green                 { color:green; }
   textarea               {
       height : 200px;
-      width  : 100%;      
+      width  : 100%;
   }
  }
 

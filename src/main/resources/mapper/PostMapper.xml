@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.board.paging.mapper.BoardPagingMapper">  
+  
+  <!-- menu_id 해당하는 게시물 자료수 -->
+  <select id="count">
+  
+      SELECT   COUNT(*)  AS CNT
+       FROM    BOARD
+       WHERE   MENU_ID  =  #{ menu_id } 
+  
+  </select>
+  
+  <select id="getBoardPagingList">
+  	SELECT 
+  	FROM BOARD
+  	ORDER BY
+  	OFFSET #{} ROWS FETCH NEXT #{} ROWS ONLY
+  </select>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

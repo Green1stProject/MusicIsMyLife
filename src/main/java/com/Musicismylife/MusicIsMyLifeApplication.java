@@ -1,13 +1,13 @@
-package com.board;
+package com.Musicismylife;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BoardApplication {
+public class MusicIsMyLifeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BoardApplication.class, args);
+		SpringApplication.run(MusicIsMyLifeApplication.class, args);
 	}
 
 }
