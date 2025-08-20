@@ -13,7 +13,26 @@
 </head>
 <body>
   <main>	
-
+   <style>
+   
+    .post action {
+    text-align: right;
+    margin-top: 10px
+    }
+    
+    .post-actions .edit-bitton, {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    }
+    
+    .post-actions .edit-button {
+       background-color: #ff9800;
+       color: white;
+    }
+    </style>
   </main>	
 </body>
 </html>
