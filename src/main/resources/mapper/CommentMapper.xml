@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.musicismylife.domain.comment.CommentMapper">  
+  <!--댓글 목록조회 -->
+  <select id="getCommentList"  
+          resultType = "com.musicismylife.domain.comment.CommentDTO" >
+  
+  
+  </select>
+
+  <!-- 댓글추가 추가 -->
+  <insert id="insertComment">  
+   
+
+  </insert> 
+  
+  
+  <!-- 댓글삭제 -->
+  <delete id="deleteComment">
+  
+  </delete>
+  
+  <!-- 댓글수정 -->
+  <update id="updateComment">
+  
+  </update>
+  
+  
+  
+</mapper>
