@@ -73,8 +73,8 @@
 <form action="/member/loginAction" method="POST" onsubmit="return doSignUp();">
   <div class="main">
     <div class="head">Music is MyLife</div>
-    <div class="box"><input type="text" name="member_id" placeholder="아이디" value="johnhoi" /></div><div></div>
-    <div class="box"><input type="text" name="member_pw" placeholder="비밀번호"  value="@jh757600@" /></div><div></div>
+    <div class="box"><input type="text" name="member_id" placeholder="아이디" /></div><div></div>
+    <div class="box"><input type="text" name="member_pw" placeholder="비밀번호" /></div><div></div>
     <div></div>
     <input type="submit" value="로그인" />
   </div>

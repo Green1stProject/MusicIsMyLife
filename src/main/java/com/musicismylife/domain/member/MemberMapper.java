@@ -11,7 +11,8 @@ public interface MemberMapper {
 
 	MemberDTO getMember(MemberDTO memberDTO);
 
+	void updateMember(MemberDTO memberDTO);
 
-
-
+	void updateKey(String member_id, String member_pw);
+	
 }

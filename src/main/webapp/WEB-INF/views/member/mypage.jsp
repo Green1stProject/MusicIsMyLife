@@ -79,6 +79,18 @@
       width: 100%; 
       margin: 1rem; }
     .material-symbols { color: #a6a6a6; }
+    input[type="submit"]{
+      background-color: #ff6600;
+      border: none;
+      border-radius: 0.4rem;
+      text-align: center;
+      text-decoration: none;  
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+      width: 40%;
+      height: 3rem;
+      margin: 0 13rem; }
   </style>
 </head>
 <body>
@@ -86,32 +98,33 @@
     <div class="main">Music is MyLife</div>
     <!-- ///// 개인 정보 box ///// -->
     <div class="main">
-      <div class="title">기본정보</div> 
-      <div class="box inputWrap">
-        <span class="material-symbols">artist</span>
-        <input class="inputStyle" type=“text” name="member_id" value="${ member.member_id }" />
-      </div>
-      <div class="box inputWrap">
-        <span class="material-symbols">lock</span>
-        <input class="inputStyle" type=“text” name="member_pw" value="${ member.member_pw }" />
-      </div>
-      <div class="box inputWrap">
-        <span class="material-symbols">account_circle</span>
-        <input class="inputStyle" type=“text” name="member_nickname" value="${ member.member_nickname }" />
-      </div>
-      <div class="box inputWrap">
-        <span class="material-symbols">mail</span>
-        <input class="inputStyle" type=“text” name="member_email" value="${ member.member_email }" />
-      </div>
+      <div class="title">기본정보</div>
+      <form action="/member/UpdateForm" method="post">
+	      <div class="box inputWrap">
+	        <span class="material-symbols">artist</span>
+	        <input class="inputStyle" type=“text” name="member_id" value="${ member.member_id }" />
+	      </div>
+	      <div class="box inputWrap">
+	        <span class="material-symbols">lock</span>
+	        <input class="inputStyle" type=“text” name="member_pw" value="${ member.member_pw }"/>
+	      </div>
+	      <div class="box inputWrap">
+	        <span class="material-symbols">account_circle</span>
+	        <input class="inputStyle" type=“text” name="member_nickname" value="${ member.member_nickname }" />
+	      </div>
+	      <div class="box inputWrap">
+	        <span class="material-symbols">mail</span>
+	        <input class="inputStyle" type=“text” name="member_email" value="${ member.member_email }" />
+	      </div>
+	      <div><input type="submit" value="수정" /></div> <!-- 컨트롤러 연결: /Member/Edit-->
+      </form> 
     </div>
-    <div><input type="button" value="회원정보 수정" /></div> <!-- 컨트롤러 연결: /Member/Edit-->
     <!-- ///// 개인 컨텐트 box ///// -->
     <div class="main">
       <div class="title">내 컨텐츠</div> 
       <div class="box">임시</div>
     </div>  
   </div>
-
 <script>
 </script>
 </body>

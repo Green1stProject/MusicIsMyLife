@@ -23,7 +23,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 		
 		String requestURI  =  request.getRequestURI();
 		String member_id   =  request.getParameter("member_id");
-		String member_pw   =  request.getParameter("member_pw");
 		
 		log.info("uri:", requestURI);
 		

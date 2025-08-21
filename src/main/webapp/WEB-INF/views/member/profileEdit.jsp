@@ -45,7 +45,7 @@
       box-shadow: none;
       text-align: center; 
       font-size: 5rem;
-      color: #ff6600; 
+      color: #ff6600;      
       margin-bottom: 1rem;
       height: 8rem; } 
     .wrap > .main:nth-child(2) { height: 55rem; }
@@ -54,6 +54,7 @@
       background-color: #ff6600;
       font-size: 1.5rem; 
       color: white;
+      
       width: 100%; /* 중요: width 는 calc() 함수 사용: 부모요소 100%를 기준으로 padding left&right 만큼 뺀다 */
       height: 5rem;
       padding: 2rem 2rem 0; /* padding 을 줄때 반드시 좌우 균형을 잡을것 */
@@ -63,20 +64,42 @@
       font-size: 1rem;
       padding: 0 2rem;
       width: 100%;
-      height: 6.8rem; }
-    /** === button, input, inputLine === **/
-    .inputWrap{
+      height: 6.5rem; 
       display: flex;
       align-items: center; }
+    .main {
+      .box + div {
+	      display: flex;
+	      align-items: center;
+	      box-sizing: border-box;
+	      font-size: 1.2rem;
+	      color: #ff6600;
+	      width: 100%%;
+	      height: 1.2rem; 
+	      padding: 0 2rem; 
+	      }
+     }
+    /** === button, input, inputLine === **/
     .inputStyle{
       border: 0.1rem;
-      background: transparent;
-      outline: none;
-      border-bottom: 0.1rem solid #a6a6a6;
+      background: #ffe0cc;
       height: 3rem;
       width: 100%; 
-      margin: 1rem; }
+      margin: 1rem; 
+      padding: 0 1rem; }
     .material-symbols { color: #a6a6a6; }
+    input[type="submit"]{
+      background-color: #ff6600;
+      border: none;
+      border-radius: 0.4rem;
+      text-align: center;
+      text-decoration: none;  
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+      width: 40%;
+      height: 3rem;
+      margin: 0 13rem; }
   </style>
 </head>
 <body>
@@ -84,28 +107,30 @@
     <div class="main">Music is MyLife</div>
     <!-- ///// 개인 정보 box ///// -->
     <div class="main">
-      <div class="title">기본정보 수정</div> 
-      <div class="box inputWrap">
-        <span class="material-symbols">artist</span>
-        <input class="inputStyle" type=“text” name="member_id" value="" readonly/>
-      </div>
-      <div class="box inputWrap">
-        <span class="material-symbols">lock</span>
-        <input class="inputStyle" type=“text” name="member_pw" value="" />
-      </div>
-      <div class="box inputWrap">
-        <span class="material-symbols">lock</span>
-        <input class="inputStyle" type=“text” name="member_repw" value="" />
-      </div>
-      <div class="box inputWrap">
-        <span class="material-symbols">account_circle</span>
-        <input class="inputStyle" type=“text” name="member_nickname" value="" />
-      </div>
-      <div class="box inputWrap">
-        <span class="material-symbols">mail</span>
-        <input class="inputStyle" type=“text” name="member_email" value="" />
-      </div>      
-      <div><input type="button" value="확인" /></div>
+      <div class="title">기본정보 수정</div>
+      <form action="/member/UpdateAction" method="post"> 
+	      <div class="box">
+		      <span class="material-symbols">artist</span>
+		      <input class="inputStyle" type=“text” name="member_id" value="${ member.member_id }" readonly/>
+	      </div><div></div>
+	      <div class="box">
+		      <span class="material-symbols">lock</span>
+		      <input class="inputStyle" type=“text” name="member_pw" value="${ member.member_pw }"/>
+	      </div><div>체크메시지</div>
+	      <div class="box">
+          <span class="material-symbols">lock</span>
+          <input class="inputStyle" type=“text” name="member_repwd" value="${ member.member_pw }"/>
+	      </div><div>체크메시지</div>
+	      <div class="box">
+	        <span class="material-symbols">account_circle</span>
+	        <input class="inputStyle" type=“text” name="member_nickname" value="${ member.member_nickname }" />
+	      </div><div>체크메시지</div>
+	      <div class="box">
+          <span class="material-symbols">mail</span>
+          <input class="inputStyle" type=“text” name="member_email" value="${ member.member_email }" />
+	      </div><div>체크메시지</div>
+	      <div><input type="submit" value="확인" /></div>
+      </form>
     </div>
   </div>
 
