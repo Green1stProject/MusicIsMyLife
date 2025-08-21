@@ -1,12 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+pageEncoding="UTF-8"%> <%@taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
+<meta charset="UTF-8" />
+<style>
+ 
+</style>
 
-</body>
-</html>
+<div id="sidebar">
+  <ul>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  	<li>12345</li>
+  </ul>
+</div>
+
+<script></script>

@@ -17,7 +17,7 @@ body {
 
 /* 2. 메인 영역 스타일 (가운데 정렬 + 너비 제한) */
 main {
-	max-width: 600px;
+	max-width: 1000px;
 	margin: 60px auto;
 	padding: 20px 30px;
 	background-color: #fff;
