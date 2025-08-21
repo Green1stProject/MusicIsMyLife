@@ -23,6 +23,7 @@
       align-items: center;
       min-width: 100rem;     /* 1rem 은 html태그의 폰트사이즈임 // 10px => 1rem , 0.1rem => 1px */
       min-height: 70rem; }
+    /** === 전체 테두리 === **/
     .main{ 
       display: flex;
       flex-direction: column; 
@@ -32,6 +33,7 @@
       border: 0.1rem solid orange; 
       width: 50rem; 
       height: 70rem; }
+    /** === 항목체크 메세지표시 **/  
     .main > .box + div{
       display: flex;
       align-items: center;
@@ -41,11 +43,13 @@
       color: #ff6600;
       width: 80%;
       height: 3rem; }
+    /** === 텍스트로고: Music is MyLife **/  
     .main > .head {
       color: #ff6600;
       text-align: center;
       font-size: 5rem;
       height: 10rem; }
+    /**=== input ===**/  
     input {
       border-radius: 0.5rem;
       outline: none;
@@ -55,6 +59,7 @@
       width: 40rem;
       height: 5rem; }
     .box input:focus { border-color: #ff6600; }
+    /**=== btn회원가입 ===**/
     input[type="submit"] {
       background-color: #ff6600;
       border: none;
@@ -66,6 +71,7 @@
       cursor: pointer;
       height: 5rem;
       width: 65%; }
+    /**=== btn회원가입: 비활성화 ==**/  
     input[type="submit"]:disabled{
       background-color: #cccccc;
     }
@@ -88,7 +94,7 @@
      /** init */
     let init = () => {
       let el, els = document.querySelectorAll('.box');
-      let btnsendEl = document.getElementById('btnsend');
+      let btnsendEl = document.getElementById('btnsend'); //가입버튼 활성 or 비활성화
       
       // 아이디 유효성 체크
       el = els[0].children[0];
@@ -101,12 +107,10 @@
           if( onlyNumberAndEng(el.value) === false ) {
         	  msg.innerText = '아이디: 영문 또는 숫자만 가능합니다.';
         	  btnsendEl.disabled = true;
-          }
-          else if( idLength(el.value) === false ) {
+          } else if( idLength(el.value) === false ) {
         	  msg.innerText = '아이디: 5~20자의 글자여야 합니다.';
         	  btnsendEl.disabled = true;
-          }
-          else if (( onlyNumberAndEng(el.value) || idLength(el.value) )){
+          } else if (( onlyNumberAndEng(el.value) || idLength(el.value) )){
             msg.innerText = '사용가능한 아이디 입니다.';
             btnsendEl.disabled = false;
           }
@@ -124,8 +128,7 @@
           if( checkPassword(el.value) === false ) {
         	  msg.innerText = '비밀번호: 8글자 이상의 영문, 숫자, 특수문자 조합으로 사용하세요.';
         	  btnsendEl.disabled = true;
-          }
-          else {
+          } else {
         	  msg.innerText = '';
         	  btnsendEl.disabled = false;
           }
@@ -143,8 +146,7 @@
           if( isMatch(els[1].children[0].value, el.value) === false ) {
         	  msg.innerText = '비밀번호 확인: 비밀번호와 일치하지 않습니다.';
         	  btnsendEl.disabled = true;
-          }
-          else {
+          } else {
         	  msg.innerText = '';
         	  btnsendEl.disabled = false;
           }
@@ -165,8 +167,7 @@
           if( validateEmail(el.value) === false ) {
         	  msg.innerText = '유효하지 않은 이메일입니다.';
         	  btnsendEl.disabled = true;
-          }
-          else {
+          } else {
         	  msg.innerText = '';
         	  btnsendEl.disabled = false;
           }
@@ -174,18 +175,18 @@
       }
     } // End of ## init
 
-    /** 글자수 제한 체크*/
+    /** 아이디: 글자수 제한 체크*/
     let idLength = value => value.length >= 5 && value.length <= 20;
-    /** 숫자, 영문 제한 체크*/
+    /** 아이디: 숫자, 영문 제한 체크*/
     let onlyNumberAndEng = str =>  /^[A-Za-z0-9][A-Za-z0-9]*$/.test(str);
-    /** 비밀번호 숫자, 영문, 특수문자 체크*/
+    /** 비밀번호: 숫자, 영문, 특수문자 체크*/
     let checkPassword = str =>  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
-    /** 비밀번호 확인 체크 */
+    /** 비밀번호: 재입력 체크 */
     let isMatch = (password1, password2) => password1 === password2;
-    /** 이메일 유효성 체크 */
+    /** 이메일: 유효성 체크 */
     let validateEmail = (email) => /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+$/.test(email);
 
-    /** 필수항목 체크 */
+    /** 필수항목 입력체크 */
     function doSignUp() {
       let el, els = document.querySelectorAll('.box');
       

@@ -66,7 +66,7 @@
       padding: 0 2rem;
       width: 100%;
       height: 6.8rem; }
-    /** === button, input, inputLine === **/
+    /** === inputStyle :: 폰트아이콘 + input 처리 === **/
     .inputWrap{
       display: flex;
       align-items: center; }
@@ -79,6 +79,7 @@
       width: 100%; 
       margin: 1rem; }
     .material-symbols { color: #a6a6a6; }
+    /** === btn수정 === **/
     input[type="submit"]{
       background-color: #ff6600;
       border: none;
@@ -88,9 +89,9 @@
       font-size: 1.5rem;
       color: white;
       cursor: pointer;
-      width: 40%;
+      width: 30%;
       height: 3rem;
-      margin: 0 13rem; }
+      margin: 0 15rem; }
   </style>
 </head>
 <body>
@@ -116,7 +117,7 @@
 	        <span class="material-symbols">mail</span>
 	        <input class="inputStyle" type=“text” name="member_email" value="${ member.member_email }" />
 	      </div>
-	      <div><input type="submit" value="수정" /></div> <!-- 컨트롤러 연결: /Member/Edit-->
+	      <input type="submit" value="수정" /> <!-- 컨트롤러 연결: /Member/Edit-->
       </form> 
     </div>
     <!-- ///// 개인 컨텐트 box ///// -->

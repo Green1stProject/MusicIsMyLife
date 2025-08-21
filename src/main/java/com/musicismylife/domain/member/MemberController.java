@@ -29,7 +29,7 @@ public class MemberController {
 	
 	@PostMapping("/insert")
 	public ModelAndView insertMember(MemberDTO memberDTO) {
-		/** 회원가입 처리 */
+		/** 회원가입 DB처리 */
 		memberMapper.insertMember(memberDTO);
 		
 		ModelAndView mv = new ModelAndView();
@@ -40,7 +40,7 @@ public class MemberController {
 	
 	@PostMapping("/mypage")
 	public ModelAndView viewMyInfo(MemberDTO memberDTO) {
-		/** 회원 개인정보 조회
+		/** 회원 개인정보 DB조회
 		 *  입력값: member_id 
 		 * */
 		//System.out.println("아이디: " + memberDTO);
@@ -56,7 +56,7 @@ public class MemberController {
 	
 	@PostMapping("/UpdateForm")
 	public ModelAndView updateForm(MemberDTO memberDTO) {
-		/** 수정:회원 개인정보 조회
+		/** 수정:회원 개인정보 DB조회
 		 *  입력값: member_id 
 		 */
 		memberDTO = memberMapper.getMember(memberDTO);
@@ -70,7 +70,7 @@ public class MemberController {
 	
 	@PostMapping("/UpdateAction")
 	public ModelAndView updateAction(MemberDTO memberDTO) {
-		/** 회원 개인정보 수정 
+		/** 회원 개인정보 DB수정 
 		 *  입력값: 수정정보 
 		 * */
 		memberMapper.updateMember(memberDTO);
@@ -93,6 +93,7 @@ public class MemberController {
 		/** 회원 비밀번호 수정
 		 *  입력값: member_id, member_pw 
 		 *  */
+		ModelAndView mv = new ModelAndView();
 		String member_id = "";
 		String changeKey = "";
 		
@@ -101,8 +102,7 @@ public class MemberController {
 		
 		// DB 에서 회원 조회 
 		memberDTO = memberMapper.getMember(memberDTO);
-		ModelAndView mv = new ModelAndView();
-		// 회원 아이디가 존재한다면 비밀번호 변경 후 로그인 페이지로 이동
+		// 회원 아이디가 존재한다면 DB비밀번호 변경 후 로그인 페이지로 이동
 		if (memberDTO != null) {
 			memberMapper.updateKey(member_id, changeKey);
 			mv.setViewName("member/login");
@@ -124,9 +124,9 @@ public class MemberController {
 		/** 로그인 처리
 		 * 입력값: member_id, member_pw
 		 */
-		// 넘어온 로그인정보 처리
-		String member_id   =  request.getParameter("member_id");
-		String member_pw  =  request.getParameter("member_pw");
+		// 넘어온 로그인정보 받기
+		String member_id = request.getParameter("member_id");
+		String member_pw = request.getParameter("member_pw");
 
 		// DB 조회
 		MemberDTO memberDTO = memberMapper.login(member_id, member_pw);
