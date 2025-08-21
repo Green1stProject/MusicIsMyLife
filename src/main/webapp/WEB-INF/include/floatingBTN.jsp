@@ -54,6 +54,36 @@
 	font-size: 24px;
 	cursor: pointer;
 }
+
+#my_emote {
+	width: 100%;
+	height: 50px;
+}
+
+#youtube_link {
+	margin-top: 15px;
+	width: 100%;
+	height: auto; /* 높이 auto로 변경하여 이미지 비율 유지 */
+	background-color: #f0f0f0; /* 썸네일 로딩 전 배경 */
+	border-radius: 8px;
+	overflow: hidden;
+	text-align: center; /* 썸네일/텍스트 중앙 정렬 */
+	padding-bottom: 10px; /* 아래 여백 */
+}
+
+#youtube_link h3 {
+	font-size: 1.1em;
+	color: #444;
+	margin-bottom: 10px;
+	word-break: keep-all; /* 단어 단위로 줄바꿈 */
+}
+
+#youtube_link img {
+	width: 100%;
+	height: auto;
+	display: block; /* 이미지 아래 여백 제거 */
+	border-radius: 8px; /* 썸네일도 둥글게 */
+}
 </style>
 
 
@@ -68,9 +98,12 @@
 			<option value="${emotion.EMOTION_CODE}">${emotion.DESCRIPTION}</option>
 		</c:forEach>
 	</select>
-	<div id="musicRecommend"></div>
+	<div id="youtube_link">
+		<p>감정을 선택하면 추천 영상이 나타납니다.</p>
+	</div>
 </div>
 
+</div>
 
 
 <script>
@@ -78,15 +111,61 @@
 	const modalBackground = document.getElementById('modalBackground');
 	const modalWindow = document.getElementById('modalWindow');
 	const modalCloseBtn = document.getElementById('modalCloseBtn');
+	
+	 const youtubeDiv = document.getElementById('youtube_link'); // 썸네일이 들어갈 DIV
+	 const emote = document.getElementById("my_emote"); // 감정 선택 select 박스
+	  
+	  const songRecommendations = {};
+	  <c:forEach var="emotion" items="${emotionList}">
+	    songRecommendations["${emotion.EMOTION_CODE}"] = {
+	      title: "${emotion.DESCRIPTION}", // 감정 설명 그대로 제목으로
+	      videoId: "${emotion.YOUTUBE_PLAYLIST_LINK}" // 유튜브 비디오 ID
+	    };
+	  </c:forEach>
 
 	function toggleModal() {
 		modalBackground.style.display = modalBackground.style.display === 'block' ? 'none'
 				: 'block';
 		modalWindow.style.display = modalWindow.style.display === 'block' ? 'none'
 				: 'block';
+		  // 모달 열릴 때 현재 선택된 감정에 맞는 썸네일 초기 로딩
+	      const currentSelectedEmoteCode = emote.value;
+	      updateYoutubeThumbnail(currentSelectedEmoteCode);
 	}
 
 	floatingBtn.addEventListener('click', toggleModal);
 	modalCloseBtn.addEventListener('click', toggleModal);
 	modalBackground.addEventListener('click', toggleModal);
+	
+	
+	
+	// 유튜브
+	  function updateYoutubeThumbnail(emotionCode) {
+	    const recommendation = songRecommendations[emotionCode];
+	    console.log(recommendation);
+	    
+	    if (recommendation && recommendation.videoId) {
+	      const videoId = recommendation.videoId;
+
+	      youtubeDiv.innerHTML = 
+	          "<img src='https://img.youtube.com/vi/" + videoId + "/hqdefault.jpg' " +
+	          "style='width: 100%; height: auto; border-radius: 8px; cursor: pointer;' " + 
+	          "onclick=\"window.open('https://www.youtube.com/watch?v=" + videoId + "', '_blank');\" >";
+	          
+	      console.log("감정 코드:", emotionCode);
+	      console.log("추천 객체:", recommendation);
+	      console.log("추천 객체:", recommendation.title);
+	      console.log("비디오 ID:", recommendation ? recommendation.videoId : "없음");
+	      
+	    } else {
+	      youtubeDiv.innerHTML = '<p>해당 감정에 맞는 노래 또는 링크를 찾을 수 없습니다.</p>';
+	    }
+	  }
+	// 감정 선택 변경
+	  emote.addEventListener("change", function () {
+	    const selectedEmotionCode = this.value;
+	    console.log("감정 변경됨:", selectedEmotionCode);
+	    updateYoutubeThumbnail(selectedEmotionCode); // 썸네일 업데이트
+	  });
+	
 </script>
