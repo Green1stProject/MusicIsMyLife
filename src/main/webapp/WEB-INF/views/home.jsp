@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>소개 창</title>
+<title>Music Is My Life</title>
 
 <link rel="icon" type="image/ico" href="/img/favicon.ico" />
 <link rel="stylesheet"  href="/css/common.css" /> 
