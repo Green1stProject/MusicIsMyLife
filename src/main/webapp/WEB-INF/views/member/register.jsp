@@ -109,8 +109,7 @@
         	  btnsendEl.disabled = true;
           } else if( idLength(el.value) === false ) {
         	  msg.innerText = '아이디: 5~20자의 글자여야 합니다.';
-        	  btnsendEl.disabled = true;
-          } 
+        	  btnsendEl.disabled = true; } 
         } 
       }
       // 아이디 중복 체크
@@ -118,8 +117,7 @@
       el.onblur = e => {
     	  let el = e.target;
     	  if (( onlyNumberAndEng(el.value) || idLength(el.value) )){
-          verifyUserId(el.value);
-        }
+          verifyUserId(el.value); }
       }
       
       // 비밀번호 유효성 체크
@@ -135,8 +133,7 @@
         	  btnsendEl.disabled = true;
           } else {
         	  msg.innerText = '';
-        	  btnsendEl.disabled = false;
-          }
+        	  btnsendEl.disabled = false; }
         } 
       }
 
@@ -153,8 +150,7 @@
         	  btnsendEl.disabled = true;
           } else {
         	  msg.innerText = '';
-        	  btnsendEl.disabled = false;
-          }
+        	  btnsendEl.disabled = false; }
         } 
       }
       
@@ -178,8 +174,7 @@
         	  btnsendEl.disabled = true;
           } else {
         	  msg.innerText = '';
-        	  btnsendEl.disabled = false;
-          }
+        	  btnsendEl.disabled = false; }
         } 
       }
     } // End of ## init
@@ -245,11 +240,9 @@
       let data = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(json)        
-      };
+        body: JSON.stringify(json) };
 
       fetch(url, data)
-        .catch(error => console.log("error:", error)) // 정상적인 통신이 안 되었을 경우 실행되는 콜백
         .then(response => response.json())
         .then(data => { // 정상적인 통신이 되었을 때 실행되는 콜백
         	let el = document.getElementsByTagName("input")[0].parentElement.nextElementSibling;
@@ -259,11 +252,11 @@
             btnsendEl.disabled = false;
           } else{ // 사용 불가능
             el.innerText = "이미 사용중인 아이디입니다.";
-            btnsendEl.disabled = true;
-          }        	
-        }) 
+            btnsendEl.disabled = true; }        	
+        })
+        .catch(error => console.log("error:", error)) // 정상적인 통신이 안 되었을 경우 실행되는 콜백
     } // End of verifyUserId*/
-    
+        
     /** 닉네임 중복 체크 */
     let verifyNickName = userNickName => {
       let btnsendEl = document.getElementById('btnsend'); //가입버튼 활성 or 비활성화
@@ -272,11 +265,9 @@
       let data = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(json)        
-      };
+        body: JSON.stringify(json) };
 
       fetch(url, data)
-        .catch(error => console.log("error:", error)) // 정상적인 통신이 안 되었을 경우 실행되는 콜백
         .then(response => response.json())
         .then(data => { // 정상적인 통신이 되었을 때 실행되는 콜백
           let el = document.getElementsByTagName("input")[3].parentElement.nextElementSibling;
@@ -286,9 +277,9 @@
             btnsendEl.disabled = false;
           } else{ // 사용 불가능
             el.innerText = "이미 사용중인 닉네임입니다.";
-            btnsendEl.disabled = true;
-          }         
-        }) 
+            btnsendEl.disabled = true; }         
+        })
+        .catch(error => console.log("error:", error)) // 정상적인 통신이 안 되었을 경우 실행되는 콜백
     } // End of verifyNickName*/
   </script>
   

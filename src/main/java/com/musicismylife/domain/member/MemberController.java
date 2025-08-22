@@ -1,18 +1,17 @@
 package com.musicismylife.domain.member;
 
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.json.JSONObject;
 
 @Controller
 @RequestMapping("/member")
@@ -109,7 +108,7 @@ public class MemberController {
 		if (memberDTO != null) { // step2-1: 회원 아이디가 존재한다면 DB비밀번호 변경 후 로그인 페이지로 이동
 			memberMapper.updateKey(member_id, changeKey);
 			mv.setViewName("member/login");
-		} else { // step2-2: 회원이 아니라면 회원가입 페이지로 이동
+		} else {                 // step2-2: 회원이 아니라면 회원가입 페이지로 이동
 			mv.setViewName("member/register");
 		}
 		return mv;
@@ -157,6 +156,8 @@ public class MemberController {
 	@PostMapping("/ajaxIdChk")
 	@ResponseBody
 	public String postAjaxIdCheck(HttpServletRequest request, HttpServletResponse response, @RequestBody String rBody) {
+		// 회원가입 시 아이디 중복체크
+		
 		JSONObject json = new JSONObject();
 		JSONObject data = new JSONObject(rBody);
 		String userId = null;
@@ -168,8 +169,8 @@ public class MemberController {
 		MemberDTO memberDTO = memberMapper.VariableId(userId);
 		
 		// step2. DB 조회 결과 리턴
-		if( memberDTO == null ) json.put("result", "success");
-		else  json.put("result", "fail");
+		if( memberDTO == null ) json.put("result", "success"); // step2-1: 조회 결과가 없다면 사용가능 리턴
+		else  json.put("result", "fail");                      // step2-1: 조회 결과 있다면 사용불가능 리턴
 		
 		return json.toString();
 	}
@@ -177,6 +178,8 @@ public class MemberController {
 	@PostMapping("/ajaxNickNameChk")
 	@ResponseBody
 	public String postAjaxNickNameCheck(HttpServletRequest request, HttpServletResponse response, @RequestBody String rBody) {
+		// 회원가입, 회원정보 수정시 닉네임 중복체크
+		
 		JSONObject json = new JSONObject();
 		JSONObject data = new JSONObject(rBody);
 		String userNickName = null;
@@ -184,12 +187,12 @@ public class MemberController {
 		// userNickName: 입력한 NickName
 		userNickName = data.getString("CheckNickName");
 
-		// step1. DB에 NickName 있는지 조회
+		// step1. DB에 userNickName 있는지 조회
 		MemberDTO memberDTO = memberMapper.VariableNickName(userNickName);
 		
 		// step2. DB 조회 결과 리턴
-		if( memberDTO == null ) json.put("result", "success");
-		else  json.put("result", "fail");
+		if( memberDTO == null ) json.put("result", "success"); // step2-1: 조회 결과가 없다면 사용가능 리턴
+		else  json.put("result", "fail");                      // step2-1: 조회 결과 있다면 사용불가능 리턴
 		
 		return json.toString();
 	}

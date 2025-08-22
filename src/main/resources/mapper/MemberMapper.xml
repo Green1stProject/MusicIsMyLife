@@ -11,7 +11,7 @@
 		  ( #{ member_id }, #{ member_pw }, #{ member_nickname }, #{ member_email }, sysdate )   
     </insert>
 
-    <!--  로그인 회원정보 -->
+    <!--  로그인시 회원정보 조회 -->
     <select id="login"
             resultType="com.musicismylife.domain.member.MemberDTO">
 	    SELECT 
