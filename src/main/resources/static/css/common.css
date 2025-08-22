@@ -26,7 +26,7 @@ main {
 	text-align: center;
 }
 
-/* 3. 링크 스타일 (입력창 같은 느낌 주면서 버튼 느낌 가능) */
+/* 3. 링크 스타일 */
 a {
 	display: inline-block;
 	width: 180px;

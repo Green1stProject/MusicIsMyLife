@@ -3,7 +3,6 @@ package com.musicismylife;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//gg
 @Controller
 public class HomeController {
 	@RequestMapping("/")

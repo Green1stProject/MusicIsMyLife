@@ -33,7 +33,11 @@
 				<%@include file="/WEB-INF/include/profile.jsp"%>
 				<%@include file="/WEB-INF/include/sidebar.jsp"%>
 			</div>
-			<div class="content">asdasdasdasd</div>
+
+			
+			<div>
+			</div>
+
 		</div>
 	</main>
 </body>
