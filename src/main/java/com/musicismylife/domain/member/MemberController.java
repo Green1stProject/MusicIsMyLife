@@ -45,10 +45,8 @@ public class MemberController {
 		/** 회원 개인정보 DB조회
 		 *  입력값: member_id 
 		 * */
-		//System.out.println("아이디: " + memberDTO);
 		memberDTO = memberMapper.getMember(memberDTO);
 		
-		//System.out.println("회원정보: " + memberDTO);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("member", memberDTO);
 		mv.setViewName("member/mypage");
@@ -105,14 +103,13 @@ public class MemberController {
 		member_id = memberDTO.getMember_id();
 		changeKey = memberDTO.getMember_pw();
 		
-		// DB 에서 회원 조회 
+		// step1. DB 에서 회원 조회 
 		memberDTO = memberMapper.getMember(memberDTO);
-		// 회원 아이디가 존재한다면 DB비밀번호 변경 후 로그인 페이지로 이동
-		if (memberDTO != null) {
+		// step2. 
+		if (memberDTO != null) { // step2-1: 회원 아이디가 존재한다면 DB비밀번호 변경 후 로그인 페이지로 이동
 			memberMapper.updateKey(member_id, changeKey);
 			mv.setViewName("member/login");
-		} else {
-			// 회원이 아니라면 회원가입 페이지로 이동
+		} else { // step2-2: 회원이 아니라면 회원가입 페이지로 이동
 			mv.setViewName("member/register");
 		}
 		return mv;
@@ -131,19 +128,18 @@ public class MemberController {
 		/** 로그인 처리
 		 * 입력값: member_id, member_pw
 		 */
-		// 넘어온 로그인정보 받기
+		// step1: 넘어온 로그인정보 받기
 		String member_id = request.getParameter("member_id");
 		String member_pw = request.getParameter("member_pw");
 
-		// DB 조회
+		// step2: DB 조회
 		MemberDTO memberDTO = memberMapper.login(member_id, member_pw);
-		//System.out.println( memberDTO );
 		
-		// 다른페이지에서 볼수있도록 session 에 저장
+		// step3: 다른페이지에서 볼수있도록 session 에 저장
 		HttpSession session  =  request.getSession();
 		session.setAttribute("login", memberDTO);
 
-		// === 돌아갈 주소 설정: 마이페이지로 이동 (추후 페이지 정해지면 변경하기) ===/
+		// step4: ======= 돌아갈 주소 설정: 마이페이지로 이동 (추후 페이지 정해지면 변경하기) =======/
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/testmain");
 		return mv;
@@ -151,8 +147,9 @@ public class MemberController {
 	
 	@PostMapping("/logout")
 	public  String  logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		/** 로그아웃 처리 */
-		session.invalidate();   // session을 초기화
+		
+		// 로그아웃 처리: session을 초기화
+		session.invalidate();   
 		
 		return  "redirect:/";
 	}

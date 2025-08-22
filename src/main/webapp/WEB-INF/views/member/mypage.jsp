@@ -48,7 +48,7 @@
       color: #ff6600; 
       height: 8rem; 
       margin-bottom: 1rem; } 
-    .wrap > .main:nth-child(2) { height: 40rem; }
+    .wrap > .main:nth-child(2) { height: 45rem; }
     .wrap > .main:nth-child(3) { height: 20rem; }    
     /** === main > title === **/
     .title{    
@@ -80,7 +80,7 @@
       margin: 1rem; }
     .material-symbols { color: #a6a6a6; }
     /** === btn수정 === **/
-    input[type="submit"]{
+    input[type="submit"], [type="button"]{
       background-color: #ff6600;
       border: none;
       border-radius: 0.4rem;
@@ -89,9 +89,9 @@
       font-size: 1.5rem;
       color: white;
       cursor: pointer;
-      width: 30%;
-      height: 3rem;
-      margin: 0 15rem; }
+      margin: 0 5rem;
+      width: 20%;
+      height: 3rem; }
   </style>
 </head>
 <body>
@@ -117,8 +117,11 @@
 	        <span class="material-symbols">mail</span>
 	        <input class="inputStyle" type=“text” name="member_email" value="${ member.member_email }" />
 	      </div>
-	      <input type="submit" value="수정" /> <!-- 컨트롤러 연결: /Member/Edit-->
-      </form> 
+      </form>
+      <div class="box">
+        <input type="submit" value="수정">
+        <input type="button" value="취소" onclick="goHome()">
+      </div> 
     </div>
     <!-- ///// 개인 컨텐트 box ///// -->
     <div class="main">
@@ -127,6 +130,7 @@
     </div>  
   </div>
 <script>
+let goHome = () => location.href="/";
 </script>
 </body>
 </html>

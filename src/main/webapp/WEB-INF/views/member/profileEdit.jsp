@@ -70,22 +70,21 @@
       display: flex;
       align-items: center; }
     /** === 항목체크 msg 표시칸 ===**/  
-    .main {
-      .box + div {
-	      display: flex;
-	      align-items: center;
-	      box-sizing: border-box;
-	      font-size: 1.2rem;
-	      color: #ff6600;
-	      width: 100%%;
-	      height: 1.2rem; 
-	      padding: 0 2rem; 
-	      }
+    .box + div {
+     display: flex;
+     align-items: center;
+     box-sizing: border-box;
+     font-size: 1.2rem;
+     color: #ff6600;
+     width: 100%;
+     height: 1.2rem; 
+     padding: 0 2rem; 
      }
     /** === inputStyle :: 폰트아이콘 + input 처리 === **/
     .inputStyle{
       border: 0.1rem;
       background: #ffe0cc;
+      border-radius: 0.4rem;
       height: 3rem;
       width: 100%; 
       margin: 1rem; 
@@ -110,39 +109,174 @@
     }  
   </style>
 </head>
-<body>
+<body onload="init()">
   <div class="wrap">
     <div class="main">Music is MyLife</div>
     <!-- ///// 개인 정보 box ///// -->
     <div class="main">
       <div class="title">기본정보 수정</div>
-      <form action="/member/UpdateAction" method="post"> 
+      <form action="/member/UpdateAction" method="post" onsubmit="return doSignUp();"> 
 	      <div class="box">
 		      <span class="material-symbols">artist</span>
-		      <input class="inputStyle" type=“text” name="member_id" value="${ member.member_id }" readonly/>
+		      <input class="inputStyle" type="text" name="member_id" value="${ member.member_id }" readonly/>
 	      </div><div></div>
 	      <div class="box">
 		      <span class="material-symbols">lock</span>
-		      <input class="inputStyle" type=“text” name="member_pw" value="${ member.member_pw }"/>
-	      </div><div>체크메시지</div>
+		      <input class="inputStyle" type="text" name="member_pw" value="${ member.member_pw }"/>
+	      </div><div></div>
 	      <div class="box">
           <span class="material-symbols">lock</span>
-          <input class="inputStyle" type=“text” name="member_repwd" value="${ member.member_pw }"/>
-	      </div><div>체크메시지</div>
+          <input class="inputStyle" type="text" name="member_repwd" value="${ member.member_pw }"/>
+	      </div><div></div>
 	      <div class="box">
 	        <span class="material-symbols">account_circle</span>
-	        <input class="inputStyle" type=“text” name="member_nickname" value="${ member.member_nickname }" />
-	      </div><div>체크메시지</div>
+	        <input class="inputStyle" type="text" name="member_nickname" value="${ member.member_nickname }" />
+	      </div><div></div>
 	      <div class="box">
           <span class="material-symbols">mail</span>
-          <input class="inputStyle" type=“text” name="member_email" value="${ member.member_email }" />
-	      </div><div>체크메시지</div>
-	      <input type="submit" value="확인" />
+          <input class="inputStyle" type="text" name="member_email" value="${ member.member_email }" />
+	      </div><div></div>
+	      <input id="btnsend" type="submit" value="확인" />
       </form>
     </div>
   </div>
 
 <script>
-</script>
+     /** init */
+    let init = () => {
+      let el, els = document.querySelectorAll('.box');
+      let btnsendEl = document.getElementById('btnsend'); //가입버튼 활성 or 비활성화
+      
+      // 비밀번호 유효성 체크
+      el = els[1].children[1]; 
+      el.onkeyup = e => {
+        let el = e.target;
+
+        if( el.value.length !== 0 ) {
+          let msg = e.target.parentElement.nextElementSibling;
+
+          if( checkPassword(el.value) === false ) {
+            msg.innerText = '비밀번호: 8글자 이상의 영문, 숫자, 특수문자 조합으로 사용하세요.';
+            btnsendEl.disabled = true;
+          } else {
+            msg.innerText = '';
+            btnsendEl.disabled = false;
+          }
+        } 
+      }
+
+      // 비밀번호 재입력란 일치 체크
+      el = els[2].children[1]; 
+      el.onkeyup = e => {
+        let el = e.target;
+
+        if( el.value.length !== 0 ) {
+          let msg = e.target.parentElement.nextElementSibling;
+
+          if( isMatch(els[1].children[1].value, el.value) === false ) {
+            msg.innerText = '비밀번호 확인: 비밀번호와 일치하지 않습니다.';
+            btnsendEl.disabled = true;
+          } else {
+            msg.innerText = '';
+            btnsendEl.disabled = false;
+          }
+        } 
+      }
+      
+      // 닉네임 중복 체크
+      el = els[3].children[1];
+      el.onblur = e => {
+        let el = e.target;
+        verifyNickName(el.value);
+      }
+      
+      // 이메일 유효성 체크
+      el = els[4].children[1]; 
+      el.onkeyup = e => {
+        let el = e.target;
+        
+        if( el.value.length !== 0 ) {
+          let msg = e.target.parentElement.nextElementSibling;
+
+          if( validateEmail(el.value) === false ) {
+            msg.innerText = '유효하지 않은 이메일입니다.';
+            btnsendEl.disabled = true;
+          } else {
+            msg.innerText = '';
+            btnsendEl.disabled = false;
+          }
+        } 
+      }
+    } // End of ## init
+   
+    /** 비밀번호: 숫자, 영문, 특수문자 체크*/
+    let checkPassword = str =>  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(str);
+    /** 비밀번호: 재입력 체크 */
+    let isMatch = (password1, password2) => password1 === password2;
+    /** 이메일: 유효성 체크 */
+    let validateEmail = (email) => /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+$/.test(email);
+
+    /** 필수항목 입력체크 */
+    function doSignUp() {
+      let el, els = document.querySelectorAll('.box');
+      
+      el = els[1].children[1]; 
+      if( el.value.length == 0 ) {
+        let msg = el.parentElement.nextElementSibling;
+
+        msg.innerText = '비밀번호를 입력해주세요.'; return false;
+      }
+      
+      el = els[2].children[1]; 
+      if( el.value.length == 0 ) {
+        let msg = el.parentElement.nextElementSibling;
+
+        msg.innerText = '비밀번호 확인을 입력해주세요.'; return false;
+      }
+      
+      el = els[3].children[1]; 
+      if( el.value.length == 0 ) {
+        let msg = el.parentElement.nextElementSibling;
+
+        msg.innerText = '닉네임을 입력해주세요.'; return false;
+      }
+      
+      el = els[4].children[1]; 
+      if( el.value.length == 0 ) {
+        let msg = el.parentElement.nextElementSibling;
+
+        msg.innerText = '이메일을 입력해주세요.'; return false;
+      }
+
+      return true;
+    } // End of ## 필수항목 체크
+
+    /** 닉네임 중복 체크 */
+    let verifyNickName = userNickName => {
+      let btnsendEl = document.getElementById('btnsend'); //가입버튼 활성 or 비활성화
+      let url = "/member/ajaxNickNameChk";
+      let json = { CheckNickName: userNickName };
+      let data = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(json)        
+      };
+
+      fetch(url, data)
+        .catch(error => console.log("error:", error)) // 정상적인 통신이 안 되었을 경우 실행되는 콜백
+        .then(response => response.json())
+        .then(data => { // 정상적인 통신이 되었을 때 실행되는 콜백
+          let el = document.getElementsByTagName("input")[3].parentElement.nextElementSibling;
+          
+          if(data.result == "success"){ // 사용 가능
+            el.innerText = "사용가능한 닉네임입니다.";
+            btnsendEl.disabled = false;
+          } else{ // 사용 불가능
+            el.innerText = "이미 사용중인 닉네임입니다.";
+            btnsendEl.disabled = true;
+          }         
+        }) 
+    } // End of verifyNickName*/
+  </script>
 </body>
 </html>

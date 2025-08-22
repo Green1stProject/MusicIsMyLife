@@ -251,17 +251,17 @@
       fetch(url, data)
         .catch(error => console.log("error:", error)) // 정상적인 통신이 안 되었을 경우 실행되는 콜백
         .then(response => response.json())
-        .then(data => {
+        .then(data => { // 정상적인 통신이 되었을 때 실행되는 콜백
         	let el = document.getElementsByTagName("input")[0].parentElement.nextElementSibling;
         	
-          if(data.result == "success"){ // 사용가능
+          if(data.result == "success"){ // 사용 가능
             el.innerText = "사용가능한 아이디입니다.";
             btnsendEl.disabled = false;
-          } else{ // 사용불가능
+          } else{ // 사용 불가능
             el.innerText = "이미 사용중인 아이디입니다.";
             btnsendEl.disabled = true;
           }        	
-        }) // 정상적인 통신이 되었을 때 실행되는 콜백
+        }) 
     } // End of verifyUserId*/
     
     /** 닉네임 중복 체크 */
@@ -278,17 +278,17 @@
       fetch(url, data)
         .catch(error => console.log("error:", error)) // 정상적인 통신이 안 되었을 경우 실행되는 콜백
         .then(response => response.json())
-        .then(data => {
+        .then(data => { // 정상적인 통신이 되었을 때 실행되는 콜백
           let el = document.getElementsByTagName("input")[3].parentElement.nextElementSibling;
           
-          if(data.result == "success"){ // 사용가능
+          if(data.result == "success"){ // 사용 가능
             el.innerText = "사용가능한 닉네임입니다.";
             btnsendEl.disabled = false;
-          } else{ // 사용불가능
+          } else{ // 사용 불가능
             el.innerText = "이미 사용중인 닉네임입니다.";
             btnsendEl.disabled = true;
           }         
-        }) // 정상적인 통신이 되었을 때 실행되는 콜백
+        }) 
     } // End of verifyNickName*/
   </script>
   
