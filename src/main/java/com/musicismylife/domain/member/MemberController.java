@@ -1,18 +1,18 @@
 package com.musicismylife.domain.member;
 
-import java.util.List;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import com.musicismylife.domain.member.MemberDTO;
-import com.musicismylife.domain.member.MemberMapper;
 
 @Controller
 @RequestMapping("/member")
@@ -22,9 +22,11 @@ public class MemberController {
 	private MemberMapper memberMapper;
 		
 	@GetMapping("/register")
-	public String MemberForm() {
+	public ModelAndView MemberForm() {
 		/** 회원가입폼 페이지이동 */
-		return "member/register"; 
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/register");
+		return mv;
 	}
 	
 	@PostMapping("/insert")
@@ -71,7 +73,7 @@ public class MemberController {
 	@PostMapping("/UpdateAction")
 	public ModelAndView updateAction(MemberDTO memberDTO) {
 		/** 회원 개인정보 DB수정 
-		 *  입력값: 수정정보 
+		 *  입력값: 수정 회원정보 
 		 * */
 		memberMapper.updateMember(memberDTO);
 		
@@ -83,9 +85,12 @@ public class MemberController {
 	}
 	
 	@GetMapping("/loseKey")
-	public String updateKeyForm() {
+	public ModelAndView updateKeyForm() {
 		/** 비밀번호 변경하기 페이지 이동 */ 
-		return "member/updateKeyForm";
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/updateKeyForm");
+		
+		return mv;
 	}
 	
 	@PostMapping("/updateKey")
@@ -114,13 +119,15 @@ public class MemberController {
 	}
 
 	@GetMapping("/login")
-	public String loginForm() {
+	public ModelAndView loginForm() {
 		/** 로그인 페이지 이동 */
-		return "member/login";
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/login");
+		return mv;
 	}
 	
 	@PostMapping("/loginAction")
-	public String loginAction(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView loginAction(HttpServletRequest request, HttpServletResponse response) {
 		/** 로그인 처리
 		 * 입력값: member_id, member_pw
 		 */
@@ -137,17 +144,56 @@ public class MemberController {
 		session.setAttribute("login", memberDTO);
 
 		// === 돌아갈 주소 설정: 마이페이지로 이동 (추후 페이지 정해지면 변경하기) ===/
-		return "/member/testmain";
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/testmain");
+		return mv;
 	}
 	
-	/* 로그아웃 처리
+	@PostMapping("/logout")
 	public  String  logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		/** 로그아웃 처리 */
 		session.invalidate();   // session을 초기화
 		
-		// Object  url         = session.getAttribute("URL");
-		// return  "redirect:" + (String_ url;
 		return  "redirect:/";
 	}
-	*/
+	
+	@PostMapping("/ajaxIdChk")
+	@ResponseBody
+	public String postAjaxIdCheck(HttpServletRequest request, HttpServletResponse response, @RequestBody String rBody) {
+		JSONObject json = new JSONObject();
+		JSONObject data = new JSONObject(rBody);
+		String userId = null;
+		
+		// userId: 입력한 ID
+		userId = data.getString("CheckId");
+		
+		// step1. DB에 userId 가 있는지 조회
+		MemberDTO memberDTO = memberMapper.VariableId(userId);
+		
+		// step2. DB 조회 결과 리턴
+		if( memberDTO == null ) json.put("result", "success");
+		else  json.put("result", "fail");
+		
+		return json.toString();
+	}
+	
+	@PostMapping("/ajaxNickNameChk")
+	@ResponseBody
+	public String postAjaxNickNameCheck(HttpServletRequest request, HttpServletResponse response, @RequestBody String rBody) {
+		JSONObject json = new JSONObject();
+		JSONObject data = new JSONObject(rBody);
+		String userNickName = null;
+		
+		// userNickName: 입력한 NickName
+		userNickName = data.getString("CheckNickName");
 
+		// step1. DB에 NickName 있는지 조회
+		MemberDTO memberDTO = memberMapper.VariableNickName(userNickName);
+		
+		// step2. DB 조회 결과 리턴
+		if( memberDTO == null ) json.put("result", "success");
+		else  json.put("result", "fail");
+		
+		return json.toString();
+	}
 }

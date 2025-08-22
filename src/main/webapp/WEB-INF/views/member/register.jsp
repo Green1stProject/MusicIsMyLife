@@ -54,7 +54,7 @@
       border-radius: 0.5rem;
       outline: none;
       border: 0.15rem solid #a6a6a6;
-      transition: 3s;
+      transition: 1.5s;
       padding-left: 1rem;
       width: 40rem;
       height: 5rem; }
@@ -110,11 +110,16 @@
           } else if( idLength(el.value) === false ) {
         	  msg.innerText = '아이디: 5~20자의 글자여야 합니다.';
         	  btnsendEl.disabled = true;
-          } else if (( onlyNumberAndEng(el.value) || idLength(el.value) )){
-            msg.innerText = '사용가능한 아이디 입니다.';
-            btnsendEl.disabled = false;
-          }
+          } 
         } 
+      }
+      // 아이디 중복 체크
+      el = els[0].children[0];
+      el.onblur = e => {
+    	  let el = e.target;
+    	  if (( onlyNumberAndEng(el.value) || idLength(el.value) )){
+          verifyUserId(el.value);
+        }
       }
       
       // 비밀번호 유효성 체크
@@ -154,7 +159,11 @@
       }
       
       // 닉네임 중복 체크
-      
+      el = els[3].children[0];
+      el.onblur = e => {
+        let el = e.target;
+        verifyNickName(el.value);
+      }
       
       // 이메일 유효성 체크
       el = els[4].children[0]; 
@@ -228,26 +237,59 @@
       return true;
     } // End of ## 필수항목 체크
 
-    /*let verifyUserId = userId => {
-      let url = "https://192.168.200.166/common/login";
+    /** 아이디 중복 체크 */
+    let verifyUserId = userId => {
+    	let btnsendEl = document.getElementById('btnsend'); //가입버튼 활성 or 비활성화
+    	let url = "/member/ajaxIdChk";
+    	let json = { CheckId: userId };
       let data = {
         method: "POST",
-        //headers: {"Content-Type": "application/json"},
-        body: userId        
-      }
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(json)        
+      };
 
       fetch(url, data)
         .catch(error => console.log("error:", error)) // 정상적인 통신이 안 되었을 경우 실행되는 콜백
-        .then(response => {
-          let el = document.getElementsByTagName("input")[0].parentElement.nextElementSibling;
-          console.log("response:", response)
-          if(response = "success"){ // 사용가능
+        .then(response => response.json())
+        .then(data => {
+        	let el = document.getElementsByTagName("input")[0].parentElement.nextElementSibling;
+        	
+          if(data.result == "success"){ // 사용가능
             el.innerText = "사용가능한 아이디입니다.";
-          }else{ // 사용불가능
+            btnsendEl.disabled = false;
+          } else{ // 사용불가능
             el.innerText = "이미 사용중인 아이디입니다.";
-          }
-        }); // 정상적인 통신이 되었을 때 실행되는 콜백
+            btnsendEl.disabled = true;
+          }        	
+        }) // 정상적인 통신이 되었을 때 실행되는 콜백
     } // End of verifyUserId*/
+    
+    /** 닉네임 중복 체크 */
+    let verifyNickName = userNickName => {
+      let btnsendEl = document.getElementById('btnsend'); //가입버튼 활성 or 비활성화
+      let url = "/member/ajaxNickNameChk";
+      let json = { CheckNickName: userNickName };
+      let data = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(json)        
+      };
+
+      fetch(url, data)
+        .catch(error => console.log("error:", error)) // 정상적인 통신이 안 되었을 경우 실행되는 콜백
+        .then(response => response.json())
+        .then(data => {
+          let el = document.getElementsByTagName("input")[3].parentElement.nextElementSibling;
+          
+          if(data.result == "success"){ // 사용가능
+            el.innerText = "사용가능한 닉네임입니다.";
+            btnsendEl.disabled = false;
+          } else{ // 사용불가능
+            el.innerText = "이미 사용중인 닉네임입니다.";
+            btnsendEl.disabled = true;
+          }         
+        }) // 정상적인 통신이 되었을 때 실행되는 콜백
+    } // End of verifyNickName*/
   </script>
   
 </body>

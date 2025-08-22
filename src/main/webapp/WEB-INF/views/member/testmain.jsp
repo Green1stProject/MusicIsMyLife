@@ -20,6 +20,7 @@
 	   <form action="/member/mypage" method="POST">
 	     <input type="hidden" name="member_id" value="${ login.member_id }">
 	     <input type="submit" value="내 정보 보기" >
+	     <span>${ login.member_nickname }</span>
 	   </form> 
    </c:if>
    <c:if test="${ login.member_id == null }">
