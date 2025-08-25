@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta charset="UTF-8" />
 <style>
   #profileBox {
@@ -26,14 +25,26 @@ uri="http://java.sun.com/jsp/jstl/core"%>
   .logout {
     display: block;
   }
+
 </style>
 
 <div id="profileBox">
-  <div>닉네임 님,</div>
-  <div>반갑습니다.</div>
-  <div class="linkBTN logout"><a href="">마이페이지</a></div>
-  <div class="linkBTN login"><a href="">로그인/ 회원가입</a></div>
-  <div class="linkBTN logout"><a href="">로그아웃</a></div>
+  <c:if test="${ login.member_id != null }">
+	  <div>${ login.member_nickname } 님,</div>
+	  <div>반갑습니다.</div>
+  </c:if>
+  <c:if test="${ login.member_id != null }">
+	  <div class="linkBTN logout">
+	    <a href="/member/mypage?member_id=${ login.member_id }">마이페이지</a>
+	  </div>
+  </c:if>
+  <c:if test="${ login.member_id == null }">
+    <div class="linkBTN logout"><a href="/member/login">로그인</a></div>
+    <div class="linkBTN logout"><a href="/member/register">회원가입</a></div>
+  </c:if>
+  <c:if test="${ login.member_id != null }">
+    <div class="linkBTN logout"><a href="/member/logout">로그아웃</a></div>
+  </c:if>
 </div>
 
 <script></script>

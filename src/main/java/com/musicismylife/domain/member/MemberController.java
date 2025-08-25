@@ -39,7 +39,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@PostMapping("/mypage")
+	@RequestMapping("/mypage")
 	public ModelAndView viewMyInfo(MemberDTO memberDTO) {
 		/** 회원 개인정보 DB조회
 		 *  입력값: member_id 
@@ -140,11 +140,12 @@ public class MemberController {
 
 		// step4: ======= 돌아갈 주소 설정: 마이페이지로 이동 (추후 페이지 정해지면 변경하기) =======/
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("member/testmain");
+		//mv.setViewName("member/testmain");
+		mv.setViewName("viewTest");
 		return mv;
 	}
 	
-	@PostMapping("/logout")
+	@RequestMapping("/logout")
 	public  String  logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
 		// 로그아웃 처리: session을 초기화

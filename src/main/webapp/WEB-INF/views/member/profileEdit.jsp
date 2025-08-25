@@ -122,11 +122,11 @@
 	      </div><div></div>
 	      <div class="box">
 		      <span class="material-symbols">lock</span>
-		      <input class="inputStyle" type="text" name="member_pw" value="${ member.member_pw }"/>
+		      <input class="inputStyle" type="password" name="member_pw" value="${ member.member_pw }"/>
 	      </div><div></div>
 	      <div class="box">
           <span class="material-symbols">lock</span>
-          <input class="inputStyle" type="text" name="member_repwd" value="${ member.member_pw }"/>
+          <input class="inputStyle" type="password" name="member_repwd" value="${ member.member_pw }"/>
 	      </div><div></div>
 	      <div class="box">
 	        <span class="material-symbols">account_circle</span>
