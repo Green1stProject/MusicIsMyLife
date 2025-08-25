@@ -28,6 +28,8 @@ public class TestController {
 		
 		List<TestDTO> testList = testMapper.getPostListByEmotion(emotionCode); 
 		model.addAttribute("testList", testList);
+		System.out.println("안녕~22");
+		System.out.println(testList);
 		return "/viewTest";
 	}
 }
