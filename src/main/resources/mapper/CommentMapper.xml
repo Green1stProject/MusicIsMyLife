@@ -19,7 +19,8 @@
   </select>
   
   <!-- 댓글 내용 조회 -->
-  <select id="getComment">
+  <select id="getComment"
+          resultType = "com.musicismylife.domain.comment.CommentDTO" >
     SELECT comment_id, post_id, member_id,
            content, created_at, updated_at
     FROM comments

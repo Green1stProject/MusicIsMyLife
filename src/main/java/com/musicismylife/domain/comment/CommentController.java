@@ -24,6 +24,7 @@ public class CommentController {
 		// 댓글 수량 가져오기
 		int commentCount = 0;
 		commentCount = commentMapper.getCommentCount(postDTO);
+		
 		// 댓글 목록 가져오기
 		List<CommentDTO> commentDTO = commentMapper.getCommentList(postDTO);
 
