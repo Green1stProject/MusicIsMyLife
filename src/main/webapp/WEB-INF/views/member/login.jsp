@@ -74,7 +74,7 @@
   <div class="main">
     <div class="head">Music is MyLife</div>
     <div class="box"><input type="text" name="member_id" placeholder="아이디" /></div><div></div>
-    <div class="box"><input type="text" name="member_pw" placeholder="비밀번호" /></div><div></div>
+    <div class="box"><input type="password" name="member_pw" placeholder="비밀번호" /></div><div></div>
     <div></div>
     <input type="submit" value="로그인" />
   </div>

@@ -107,7 +107,7 @@
 	      </div>
 	      <div class="box inputWrap">
 	        <span class="material-symbols">lock</span>
-	        <input class="inputStyle" type=“text” name="member_pw" value="${ member.member_pw }"/>
+	        <input class="inputStyle" type=“password” name="member_pw" value="${ member.member_pw }"/>
 	      </div>
 	      <div class="box inputWrap">
 	        <span class="material-symbols">account_circle</span>
@@ -117,17 +117,17 @@
 	        <span class="material-symbols">mail</span>
 	        <input class="inputStyle" type=“text” name="member_email" value="${ member.member_email }" />
 	      </div>
-      </form>
       <div class="box">
         <input type="submit" value="수정">
         <input type="button" value="취소" onclick="goHome()">
-      </div> 
+      </div>
+      </form> 
     </div>
     <!-- ///// 개인 컨텐트 box ///// -->
     <div class="main">
       <div class="title">내 컨텐츠</div> 
       <div class="box">임시</div>
-    </div>  
+    </div>
   </div>
 <script>
 let goHome = () => location.href="/";
