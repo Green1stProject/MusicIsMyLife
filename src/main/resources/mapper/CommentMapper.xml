@@ -4,27 +4,49 @@
   <!--댓글 목록조회 -->
   <select id="getCommentList"  
           resultType = "com.musicismylife.domain.comment.CommentDTO" >
-  
-  
+	  SELECT comment_id, post_id, member_id,
+		       content, created_at, updated_at
+		FROM comments
+		WHERE post_id = #{ post_id }
+	  ORDER BY comment_id DESC
   </select>
-
-  <!-- 댓글추가 추가 -->
-  <insert id="insertComment">  
-   
-
-  </insert> 
   
+  <!--  댓글 수량조회 -->
+  <select id="getCommentCount">
+	  SELECT COUNT(*) AS cnt
+	  FROM  comments
+	  WHERE post_id = #{ post_id } 
+  </select>
+  
+  <!-- 댓글 내용 조회 -->
+  <select id="getComment">
+    SELECT comment_id, post_id, member_id,
+           content, created_at, updated_at
+    FROM comments
+    WHERE post_id = #{ post_id }
+  </select>
+  
+  <!-- 댓글 추가 -->
+  <insert id="insertComment">  
+   INSERT INTO comments
+  ( post_id, member_id, content, created_at )
+  VALUES
+  ( #{ post_id }, #{ member_id }, #{ content }, sysdate )
+  </insert> 
   
   <!-- 댓글삭제 -->
   <delete id="deleteComment">
-  
+    DELETE
+    FROM comments
+    WHERE comment_id = #{ comment_id }
   </delete>
   
   <!-- 댓글수정 -->
   <update id="updateComment">
-  
+	  UPDATE comments
+		SET content = #{ content },
+		    updated_at = sysdate
+		WHERE comment_id = #{ comment_id }
   </update>
-  
-  
-  
+   
 </mapper>

@@ -107,7 +107,7 @@
 	      </div>
 	      <div class="box inputWrap">
 	        <span class="material-symbols">lock</span>
-	        <input class="inputStyle" type=“password” name="member_pw" value="${ member.member_pw }"/>
+	        <input class="inputStyle" type="password" name="member_pw" value="${ member.member_pw }"/>
 	      </div>
 	      <div class="box inputWrap">
 	        <span class="material-symbols">account_circle</span>
