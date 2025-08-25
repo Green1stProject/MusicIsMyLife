@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols"/>
+  <link rel="icon" type="image/ico" href="/img/favicon.ico" />
   <title>Music is MyLife : 회원가입</title>
   <style>
     * { margin : 0; padding:0;
