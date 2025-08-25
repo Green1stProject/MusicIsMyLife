@@ -17,11 +17,12 @@ public class TestDTO {
 	private String CREATED_AT;
 	private String VIEW_COUNT;
 	private String MEMBER_NICKNAME;
+	private String EMOTION_NAME;
 	
 	public TestDTO() {}
 	
 	public TestDTO(int POST_ID, String MEMBER_ID, String TITLE, String CONTENTS, String YOUTUBE_LINK,
-			String EMOTION_CODE, String CREATED_AT, String VIEW_COUNT, String MEMBER_NICKNAME) {
+			String EMOTION_CODE, String CREATED_AT, String VIEW_COUNT, String MEMBER_NICKNAME, String EMOTION_NAME) {
 	
 		this.POST_ID = POST_ID;
 		this.MEMBER_ID = MEMBER_ID;
@@ -32,6 +33,7 @@ public class TestDTO {
 		this.CREATED_AT = CREATED_AT;
 		this.VIEW_COUNT = VIEW_COUNT;
 		this.MEMBER_NICKNAME = MEMBER_NICKNAME;
+		this.EMOTION_NAME = EMOTION_NAME;
 	}
 	
 	

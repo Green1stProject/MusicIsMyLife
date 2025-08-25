@@ -4,28 +4,27 @@
 
 <mapper namespace="com.musicismylife.domain.test.TestMapper">
 
-    <!--게시글 목록 조회 -->
-    <select id="getPostList" resultType="com.musicismylife.domain.test.TestDTO">
-    SELECT *
-    FROM POST
-    ORDER BY POST_ID  
-    </select>
+	<!--게시글 목록 조회 -->
+	<select id="getPostList"
+		resultType="com.musicismylife.domain.test.TestDTO">
+		SELECT *
+		FROM POST
+		ORDER BY POST_ID
+	</select>
 
-<!-- getPost -->
-  <select  id="getPost" 
-           resultType = "com.musicismylife.domain.test.TestDTO" >
-     
-     SELECT      *
-      FROM       POST  
-     WHERE       POST_ID =  #{  POST_ID  }  
-  
-  </select>
-  
-  <!-- 감정별 게시글 목록 조회 -->
-    <select id="getPostListByEmotion" resultType="com.musicismylife.domain.test.TestDTO">
-    SELECT *
-    FROM POST
-    WHERE EMOTION_CODE = #{emotionCode}  <!-- EMOTION_CODE가 넘어온 값과 같은 것만! -->
-    ORDER BY POST_ID
-    </select>
+	<!-- getPost -->
+	<select id="getPost"
+		resultType="com.musicismylife.domain.test.TestDTO">
+		SELECT * FROM POST WHERE POST_ID = #{POST_ID}
+	</select>
+
+	<!-- 감정별 게시글 목록 조회 -->
+	<select id="getPostListByEmotion"
+		resultType="com.musicismylife.domain.test.TestDTO">
+		SELECT *
+		FROM POST
+		WHERE EMOTION_CODE = #{emotionCode}  <!-- EMOTION_CODE가 
+			넘어온 값과 같은 것만! -->
+		ORDER BY POST_ID
+	</select>
 </mapper>

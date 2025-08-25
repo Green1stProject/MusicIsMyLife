@@ -32,4 +32,15 @@ public class TestController {
 		System.out.println(testList);
 		return "/viewTest";
 	}
+	
+	
+	@RequestMapping("/post/detail/{postID}")
+	public String showPostDetail(@PathVariable String postID, Model model) {
+		TestDTO post = testMapper.getPost(postID);
+	    model.addAttribute("post", post);
+		System.out.println(post);
+		return "/viewTestDetail";
+	
+		
+	}
 }

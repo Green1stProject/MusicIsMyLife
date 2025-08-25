@@ -9,7 +9,7 @@ public interface TestMapper {
 
 	List<TestDTO> getPostList();
 
-	TestDTO getPost(TestDTO testDTO);
+	TestDTO getPost(String postID);
 
 	List<TestDTO> getPostListByEmotion(String emotionCode);
 }
