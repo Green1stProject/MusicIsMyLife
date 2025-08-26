@@ -7,66 +7,135 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols"/>
   <title>Music is MyLife : 로그인</title>
   <style>
-    * { margin : 0; padding:0;
-      box-sizing : border-box; }  
-    html,body{
-      width: 100%; height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      font-size: 10px; /* 삭제하면 안됨 */
-      font-family: 'Nanum Gothic', '맑은 고딕', Arial, sans-serif;
-      color: #333;
-      background-color: #f9f9f9; }
-    body{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-width: 100rem;     /* 1rem 은 html태그의 폰트사이즈임 // 10px => 1rem , 0.1rem => 1px */
-      min-height: 70rem; }
-    .main{ 
-      display: flex;
-      flex-direction: column; 
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      border: 0.1rem solid orange; 
-      width: 50rem; 
-      height: 70rem; }
-    .main > .head {      
-      text-align: center;
-      font-size: 5rem;
-      color: #ff6600;
-      height: 10rem; }
-    .main > .box + div{
-      display: flex;
-      align-items: center;
-      box-sizing: border-box;
-      padding-bottom: 1rem;
-      font-size: 1.2rem;
-      color: #ff6600; 
-      width: 80%;
-      height: 3rem; }
-    input {
-      border-radius: 0.5rem;     
-      border: 0.15rem solid #a6a6a6;
-      outline: none;
-      transition: 3s;
-      padding-left: 1rem;
-      width: 40rem;
-      height: 5rem; }
-    .box input:focus { border-color: #ff6600; }
-    input[type="submit"] {         
-      background-color: #ff6600;
-      border: none;
-      border-radius: 0.4rem;
-      text-align: center;
-      text-decoration: none;  
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
-      height: 5rem;
-      width: 65%; }
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', '맑은 고딕', Arial, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-size: 10px;
+  background: radial-gradient(circle at top left, #ff8a00, #e52e71 70%);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100rem;
+  min-height: 70rem;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border: none;
+  width: 50rem;
+  height: 70rem;
+  background: white;
+  border-radius: 2.2rem;
+  box-shadow: 0 1.6rem 4rem rgba(229, 46, 113, 0.45),
+    0 0 4.5rem rgba(255, 62, 141, 0.2);
+  animation: fadeScaleUp 0.8s ease forwards;
+}
+
+@keyframes fadeScaleUp {
+  0% {opacity: 0; transform: scale(0.85);}
+  100% {opacity: 1; transform: scale(1);}
+}
+
+.main > .head {
+  text-align: center;
+  font-size: 5rem;
+  font-weight: 900;
+  color: #e52e71;
+  height: 10rem;
+  margin-bottom: 4rem;
+  animation: titleJump 1.2s ease infinite;
+}
+
+@keyframes titleJump {
+  0%, 100% {transform: translateY(0);}
+  50% {transform: translateY(-0.5rem);}
+}
+
+.main > .box + div {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #e52e71;
+  width: 80%;
+  height: 3rem;
+}
+
+input {
+  border-radius: 1rem;
+  border: 0.2rem solid rgba(229, 46, 113, 0.3);
+  outline: none;
+  transition: all 0.3s ease;
+  padding-left: 2rem;
+  width: 40rem;
+  height: 5.5rem;
+  font-size: 1.8rem;
+  color: #444;
+}
+
+.box input:focus {
+  border-color: #e52e71;
+  box-shadow: 0 0 1rem rgba(229, 46, 113, 0.2);
+}
+
+input[type="submit"] {
+  background: linear-gradient(45deg, #e52e71, #ff3e8d);
+  border: none;
+  border-radius: 5rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  height: 6rem;
+  width: 65%;
+  margin-top: 2rem;
+  box-shadow: 0 1rem 2.2rem rgba(229, 46, 113, 0.5);
+  transition: all 0.35s cubic-bezier(.25,.8,.25,1);
+}
+
+input[type="submit"]:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 1.4rem 2.8rem rgba(255, 62, 141, 0.7);
+  background: linear-gradient(45deg, #ff3e8d, #e52e71);
+}
+
+/* 추가: 회원가입 링크 스타일 */
+.signup-link {
+  margin-top: 3rem;
+  font-size: 1.6rem;
+  color: #666;
+}
+
+.signup-link a {
+  color: #e52e71;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
   </style>
 </head>
 <body onload="doMsg()">
@@ -77,6 +146,9 @@
     <div class="box"><input type="password" name="member_pw" placeholder="비밀번호" /></div><div></div>
     <div></div>
     <input type="submit" value="로그인" />
+<div class="signup-link">
+  아직 회원이 아니신가요? <a href="/member/register">회원가입</a>
+</div>
   </div>
 </form>
 

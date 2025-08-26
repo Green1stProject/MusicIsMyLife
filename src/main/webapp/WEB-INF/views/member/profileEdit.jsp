@@ -6,107 +6,167 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols"/>
   <title>Music is MyLife : 회원정보 수정</title>
   <style>
-    * { margin : 0; padding:0;
-     box-sizing : border-box; }
-    html,body{
-      width: 100%; height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      font-size: 10px; /* 삭제하면 안됨 */
-      font-family: 'Nanum Gothic', '맑은 고딕', Arial, sans-serif;
-      color: #333;
-      background-color: #f9f9f9; }
-    body{
-      display: flex;
-      flex-direction: column; 
-      justify-content: center;
-      align-items: center;
-      min-width: 100rem;     /* 1rem 은 html태그의 폰트사이즈임 // 10px => 1rem , 0.1rem => 1px */  
-      min-height: 70rem; }
-    /** === wrapper: 전체 테두리 === **/  
-    .wrap{ 
-      width: 45rem; 
-      height: 70rem; }
-    /** === 항목 box === **/  
-    .main{       
-      display: flex;
-      flex-direction: column; 
-      justify-content: start;
-      flex-wrap: wrap;
-      overflow: hidden; 
-      border: 0.1rem solid #ff6600; 
-      border-radius: 1rem; 
-      box-shadow: 0.7rem 0.7rem 1rem #b3b3b3; 
-      margin-bottom: 1rem;
-      width: 45rem; }
-    /** === main > 텍스트로고 (Music is MyLife) === **/  
-    .wrap > .main:nth-child(1){       
-      border: none;
-      box-shadow: none;
-      text-align: center; 
-      font-size: 5rem;
-      color: #ff6600;      
-      margin-bottom: 1rem;
-      height: 8rem; } 
-    /** === main > 개인정보 테두리  === **/  
-    .wrap > .main:nth-child(2) { height: 55rem; }
-    /** === main > title (기본정보 수정)  === **/
-    .title{
-      background-color: #ff6600;
-      font-size: 1.5rem; 
-      color: white;
-      
-      width: 100%; /* 중요: width 는 calc() 함수 사용: 부모요소 100%를 기준으로 padding left&right 만큼 뺀다 */
-      height: 5rem;
-      padding: 2rem 2rem 0; /* padding 을 줄때 반드시 좌우 균형을 잡을것 */
-      margin-bottom: 3rem; }
-    /** === main > box : 개인정보 항목별 box === **/  
-    .box{
-      font-size: 1rem;
-      padding: 0 2rem;
-      width: 100%;
-      height: 6.5rem; 
-      display: flex;
-      align-items: center; }
-    /** === 항목체크 msg 표시칸 ===**/  
-    .box + div {
-     display: flex;
-     align-items: center;
-     box-sizing: border-box;
-     font-size: 1.2rem;
-     color: #ff6600;
-     width: 100%;
-     height: 1.2rem; 
-     padding: 0 2rem; 
-     }
-    /** === inputStyle :: 폰트아이콘 + input 처리 === **/
-    .inputStyle{
-      border: 0.1rem;
-      background: #ffe0cc;
-      border-radius: 0.4rem;
-      height: 3rem;
-      width: 100%; 
-      margin: 1rem; 
-      padding: 0 1rem; }
-    .material-symbols { color: #a6a6a6; }
-    /** === btn확인 === **/
-    input[type="submit"]{
-      background-color: #ff6600;
-      border: none;
-      border-radius: 0.4rem;
-      text-align: center;
-      text-decoration: none;  
-      font-size: 1.5rem;
-      color: white;
-      cursor: pointer;
-      width: 35%;
-      height: 3rem;
-      margin: 2rem 15rem; }
-    /**=== btn회원가입 비활성화 ==**/  
-    input[type="submit"]:disabled{
-      background-color: #cccccc;
-    }  
+ * {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', '맑은 고딕', Arial, sans-serif;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  margin: 0; padding: 0;
+  overflow: hidden;
+  font-size: 10px;
+  background: radial-gradient(circle at top left, #ff8a00, #e52e71 70%);
+}
+
+body {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  min-width: 100rem;
+  min-height: 70rem;
+}
+
+/* 래퍼 박스 넓이 고정 + 등장 애니메이션 */
+.wrap { 
+  width: 45rem; 
+  height: 70rem;
+  animation: fadeScaleUp 0.8s ease forwards;
+}
+
+@keyframes fadeScaleUp {
+  0% {opacity: 0; transform: scale(0.85);}
+  100% {opacity: 1; transform: scale(1);}
+}
+
+/* 메인 박스 */
+.main {       
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start;
+  overflow: visible; /* overflow hidden -> visible */
+  border-radius: 1.6rem;
+  background-color: white;
+  box-shadow: 0 1.6rem 4rem rgba(229, 46, 113, 0.35);
+  margin-bottom: 2rem;
+  width: 45rem;
+  min-height: auto; /* 높이 자동으로 */
+}
+
+/* 타이틀 박스 */
+.wrap > .main:nth-child(1) {       
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  text-align: center; 
+  font-size: 5rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 1rem;
+  height: 8rem;
+  animation: titleJump 1.2s ease infinite;
+} 
+
+@keyframes titleJump {
+  0%, 100% {transform: translateY(0);}
+  50% {transform: translateY(-0.5rem);}
+}
+
+/* 두 번째 메인 박스 높이 자동 조정 */
+.wrap > .main:nth-child(2) { height: auto; }
+
+/* Section 타이틀 */
+.title {
+  background: linear-gradient(45deg, #e52e71, #ff8a00);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  width: 100%;
+  height: 5rem;
+  padding: 1.8rem 2.5rem 0;
+  margin-bottom: 3rem;
+  border-radius: 1.6rem 1.6rem 0 0;
+}
+
+/* 각 입력 박스 */
+.box {
+  font-size: 1.2rem;
+  padding: 0 2.5rem;
+  width: 100%;
+  height: auto; /* 높이 자동 조정 */
+  min-height: 6.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* 메시지 박스 (에러 등) */
+.box + div {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 1.4rem;
+  color: #e52e71;
+  width: 100%;
+  height: 2rem;
+  padding: 0 2.5rem;
+}
+
+/* 입력 스타일 */
+.inputStyle {
+  border: 0.1rem solid #e0e0e0;
+  background-color: #fff;
+  border-radius: 0.8rem;
+  height: 3.5rem;
+  width: 100%; 
+  margin: 1rem 0;
+  padding: 0 1.5rem;
+  font-size: 1.6rem;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.inputStyle:focus {
+  border-color: #e52e71;
+  box-shadow: 0 0 0.5rem rgba(229, 46, 113, 0.2);
+}
+
+/* 아이콘 컬러 */
+.material-symbols { 
+  color: #e52e71;
+  font-size: 2rem;
+  flex-shrink: 0; /* 아이콘 크기 고정 */
+  margin-right: 0.8rem;
+}
+
+/* 버튼 스타일 */
+input[type="submit"] {
+  background: linear-gradient(45deg, #e52e71, #ff3e8d);
+  border: none;
+  border-radius: 2.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  width: 15rem;
+  height: 5rem;
+  margin: 3rem auto;
+  display: block;
+  box-shadow: 0 1rem 2rem rgba(229, 46, 113, 0.4);
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  transform: translateY(-0.5rem);
+  box-shadow: 0 1.5rem 3rem rgba(229, 46, 113, 0.6);
+}
+
+input[type="submit"]:disabled {
+  background: #cccccc;
+  box-shadow: none;
+  cursor: not-allowed;
+}
   </style>
 </head>
 <body onload="init()">
