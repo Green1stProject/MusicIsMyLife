@@ -18,4 +18,6 @@ public interface CommentMapper {
 	CommentDTO getComment(CommentDTO commentDTO);
 
 	void updateComment(CommentDTO commentDTO);
+
+	List<CommentDTO> getCommentListByPostId(String postID);
 }

@@ -1,25 +1,23 @@
 package com.musicismylife.domain.comment;
 
-import java.text.MessageFormat;
 import java.util.List;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.servlet.ModelAndView;
 
 import com.musicismylife.domain.post.PostDTO;
 
 @Controller
-@RequestMapping("/comment")
 public class CommentController {
 	
 	@Autowired
 	private CommentMapper commentMapper;
 	
-	@GetMapping("/commentList")
+	@RequestMapping("/commentList")
 	public ModelAndView commentList(PostDTO postDTO) {
 		
 		// 댓글 수량 가져오기
@@ -37,8 +35,8 @@ public class CommentController {
 		return mv;
 	}
 	
-	@PostMapping("/commentWrite")
-	public void commentWrite(CommentDTO commentDTO) {
+	@RequestMapping("/commentWrite")
+	public ModelAndView commentWrite(CommentDTO commentDTO) {
 		String postID = "";
 		
 		postID = Integer.toString(commentDTO.getPost_id());
@@ -48,10 +46,10 @@ public class CommentController {
 		
 		commentMapper.insertComment(commentDTO);
 		
-		/*ModelAndView mv = new ModelAndView();
-		mv.setViewName("/post/detail/{" + postID + "}");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/post/detail/${" + postID + "}");
 		
-		return mv;*/
+		return mv;
 	}
 	
 	@GetMapping("/commentDel")

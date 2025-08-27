@@ -30,7 +30,7 @@
   <!--  ///// 댓글쓰기란 ///// -->
   <c:if test="${ login.member_id != null }">
 	  <div>
-	    <form action="commentWrite" method="post">
+	    <form action="/post/detail/${post.POST_ID}" method="post">
 	      <input type="hidden" name="post_id" value="${ post.POST_ID }"/> <!--  게시글 번호가져오기 -->
 	      <input type="hidden" name="member_id" value="${ login.member_id }" />
 		    <textarea name="content" placeholder="댓글을 입력해주세요"></textarea>
