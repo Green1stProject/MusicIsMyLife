@@ -36,6 +36,8 @@ public class TestController {
 	
 	@RequestMapping("/post/detail/{postID}")
 	public String showPostDetail(@PathVariable String postID, Model model) {
+		System.out.println("글번호: " + postID);
+		
 		TestDTO post = testMapper.getPost(postID);
 	    model.addAttribute("post", post);
 		System.out.println(post);
