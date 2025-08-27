@@ -11,5 +11,10 @@ public class PostController {
 	public String showPost() {
 		return "post/view";
 	}
+	@RequestMapping("/post/write")
+	public String writepost() {
+		return "post/write";
+		
+	}
 	
 }
