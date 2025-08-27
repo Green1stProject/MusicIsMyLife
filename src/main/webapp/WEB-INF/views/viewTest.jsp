@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@taglib prefix="c"
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
 uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -7,10 +7,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
-
     <link rel="icon" type="image/ico" href="/img/favicon.ico" />
     <link rel="stylesheet" href="/css/common.css" />
-
     <style>
       /* 전체 배경은 아주 연하게. 흰색 배경의 컨텐츠가 돋보이도록 */
       body {
@@ -37,9 +35,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         gap: 30px; /* 사이드바와 컨텐츠 사이 간격 추가 */
         align-items: flex-start; /* 상단 정렬 */
       }
-      
+
       .content {
-      width: 100%;}
+        width: 100%;
+      }
 
       /* 게시글 목록 테이블 스타일 개선 */
       .post-list {
@@ -127,7 +126,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
       /* 정렬 */
       .post-list tbody td:nth-child(1), /* 번호 */
-.post-list tbody td:nth-child(6) /* 조회수 */ {
+	  .post-list tbody td:nth-child(6) /* 조회수 */ {
         text-align: center;
         font-variant-numeric: tabular-nums;
         font-weight: 500;
@@ -147,14 +146,12 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
         font-weight: 500;
         color: #666;
       }
-
     </style>
   </head>
   <body>
     <%@include file="/WEB-INF/include/floatingBTN.jsp"%>
     <main>
       <h1 class="post-title">Music Is My Life</h1>
-
       <div id="container">
         <div>
           <%@include file="/WEB-INF/include/profile.jsp"%> <%@include
@@ -205,40 +202,44 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       </div>
     </main>
     <script>
- // 1단계: 일단 모든 태그 찾기
-    const emotionTags = document.querySelectorAll(".emotion-tag");
-    const emotionColors = {};
+      // 1단계: 일단 모든 태그 찾기
+      const emotionTags = document.querySelectorAll(".emotion-tag");
+      const emotionColors = {};
 
-    // 2단계: 각 태그마다 코드 추출하고 색상 만들기
-    console.log(emotionTags);
-    emotionTags.forEach(function(tag) {
-      // 클래스 목록에서 코드 찾기
-      const classes = Array.from(tag.classList);
-      console.log(classes);
-      const code = classes.find(function(c) { return c !== "emotion-tag"; });
-      console.log(code);
-      
-      // 코드 있으면 진행
-      if (code) {
-        // 코드에서 간단하게 색상 생성
-        let hashValue = 0;
-        for (let i = 0; i < code.length; i++) {
-          hashValue = (hashValue * 31 + code.charCodeAt(i)) % 360;
-          console.log(hashValue , '?');
+      // 2단계: 각 태그마다 코드 추출하고 색상 만들기
+      console.log(emotionTags);
+      emotionTags.forEach(function (tag) {
+        // 클래스 목록에서 코드 찾기
+        const classes = Array.from(tag.classList);
+        console.log(classes);
+        const code = classes.find(function (c) {
+          return c !== "emotion-tag";
+        });
+        console.log(code);
+
+        // 코드 있으면 진행
+        if (code) {
+          // 코드에서 간단하게 색상 생성
+          let hashValue = 0;
+          for (let i = 0; i < code.length; i++) {
+            hashValue = (hashValue * 31 + code.charCodeAt(i)) % 360;
+            console.log(hashValue, "?");
+          }
+
+          // 색상 저장 (백틱 대신 일반 문자열 연결 사용)
+          emotionColors[code] = "hsl(" + hashValue + ", 70%, 45%)";
+          console.log(emotionColors);
+
+          // 태그에 색상 적용
+          tag.style.backgroundColor = emotionColors[code];
+          tag.style.color = "#fff";
+
+          // 디버깅용 (백틱 대신 일반 문자열 연결 사용)
+          console.log(
+            '코드 "' + code + '"에 색상 ' + emotionColors[code] + " 적용됨"
+          );
         }
-        
-        // 색상 저장 (백틱 대신 일반 문자열 연결 사용)
-        emotionColors[code] = "hsl(" + hashValue + ", 70%, 45%)";
-        console.log(emotionColors);
-        
-        // 태그에 색상 적용
-        tag.style.backgroundColor = emotionColors[code];
-        tag.style.color = "#fff";
-        
-        // 디버깅용 (백틱 대신 일반 문자열 연결 사용)
-        console.log("코드 \"" + code + "\"에 색상 " + emotionColors[code] + " 적용됨");
-      }
-    });
+      });
     </script>
   </body>
 </html>

@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols"/>
+  <link rel="icon" type="image/ico" href="/img/favicon.ico" />
   <title>Music is MyLife : 회원가입</title>
   <style>
-  * {
+<style>
+     * {
   margin: 0; padding:0;
   box-sizing: border-box;
   font-family: 'Noto Sans KR', '맑은 고딕', Arial, sans-serif;
@@ -129,6 +131,7 @@ input[type="submit"]:disabled{
   cursor: not-allowed; /* 커서 변경 */
   transform: translateY(0); /* 호버 효과 제거 */
 }
+  </style>
   </style>
 </head>
 <body onload="init()">

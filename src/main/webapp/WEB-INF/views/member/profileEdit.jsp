@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols"/>
+  <link rel="icon" type="image/ico" href="/img/favicon.ico" />
   <title>Music is MyLife : 회원정보 수정</title>
   <style>
  * {
@@ -201,7 +202,7 @@ input[type="submit"]:disabled {
     </div>
   </div>
 
-<script>
+  <script>
      /** init */
     let init = () => {
       let el, els = document.querySelectorAll('.box');
@@ -243,9 +244,16 @@ input[type="submit"]:disabled {
       
       // 닉네임 중복 체크
       el = els[3].children[1];
+      let nickname1 = el.value; // 기존 닉네임
       el.onblur = e => {
         let el = e.target;
-        verifyNickName(el.value);
+
+        if(nickname1 !== el.value){ // 기존 닉네임과 입력 닉네임이 다를 경우만 중복 체크
+        	verifyNickName(el.value);
+        } else {
+        	let msg = e.target.parentElement.nextElementSibling; //체크메세지 초기화 시켜줌
+        	msg.innerText = '';
+        }
       }
       
       // 이메일 유효성 체크

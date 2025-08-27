@@ -1,5 +1,6 @@
 package com.musicismylife.domain.comment;
 
+import java.text.MessageFormat;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +38,20 @@ public class CommentController {
 	}
 	
 	@PostMapping("/commentWrite")
-	public ModelAndView commentWrite(CommentDTO commentDTO) {
+	public void commentWrite(CommentDTO commentDTO) {
+		String postID = "";
+		
+		postID = Integer.toString(commentDTO.getPost_id());
+		
+		System.out.println("작성내용: " + commentDTO);
+		System.out.println("원글번호:" + postID);
+		
 		commentMapper.insertComment(commentDTO);
 		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("comment/commentList");
+		/*ModelAndView mv = new ModelAndView();
+		mv.setViewName("/post/detail/{" + postID + "}");
 		
-		return mv;
+		return mv;*/
 	}
 	
 	@GetMapping("/commentDel")
