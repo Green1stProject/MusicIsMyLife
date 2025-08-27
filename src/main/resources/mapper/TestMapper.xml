@@ -12,7 +12,7 @@
 		ORDER BY POST_ID
 	</select>
 
-	<!-- getPost -->
+	<!-- 게시글 상세 조회 -->
 	<select id="getPost"
 		resultType="com.musicismylife.domain.test.TestDTO">
 		SELECT * FROM POST WHERE POST_ID = #{POST_ID}

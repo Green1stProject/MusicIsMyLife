@@ -154,6 +154,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@include file="/WEB-INF/include/floatingBTN.jsp"%>
     <main>
       <h1 class="post-title">Music Is My Life</h1>
+
       <div id="container">
         <div>
           <%@include file="/WEB-INF/include/profile.jsp"%> <%@include
