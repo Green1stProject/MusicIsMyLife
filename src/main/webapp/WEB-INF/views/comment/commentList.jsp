@@ -7,20 +7,37 @@
 <title>Insert title here</title>
 <link rel="icon" type="image/ico" href="/img/favicon.ico" />
 <link rel="stylesheet"  href="/css/common.css" />
+<style>
+  main > div:nth-child(1){
+    text-align: left;
+  }
+  input[type="submit"] {         
+	  background-color: #ff6600;
+	  border: none;
+	  border-radius: 1px;
+	  text-align: center;
+	  text-decoration: none;  
+	  color: white;
+	  cursor: pointer;
+	  height: 45px;
+	  width: 100px; }
+</style>
 </head>
 <body>
   <main>
   <!-- ///// 총 댓글 수 /////-->
   <div>댓글 ${ count.cnt }</div>
   <!--  ///// 댓글쓰기란 ///// -->
-  <div>
-    <form action="commentWrite" method="post">
-      <input type="hidden" name="post_id" value="${ comment.post_id }" /> <!--  게시글 번호가져오기 -->
-      <input type="hidden" name="member_id" value="${ login.member_id }" />
-	    <textarea name="content" placeholder="댓글을 입력해주세요"></textarea>
-	    <input type="submit" value="등록" />
-    </form>
-  </div>
+  <c:if test="${ login.member_id != null }">
+	  <div>
+	    <form action="commentWrite" method="post">
+	      <input type="hidden" name="post_id" value="${ post.POST_ID }"/> <!--  게시글 번호가져오기 -->
+	      <input type="hidden" name="member_id" value="${ login.member_id }" />
+		    <textarea name="content" placeholder="댓글을 입력해주세요"></textarea>
+		    <input type="submit" value="등록" />
+	    </form>
+	  </div>
+  </c:if>
   <!--  ///// 댓글 리스트 ///// -->
   <div>
     <c:forEach var="comment" items="${ comment }">
