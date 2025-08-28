@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.musicismylife.domain.post.PostDTO;
 
 @Controller
-@RequestMapping("/comment")
 public class CommentController {
 	
 	@Autowired
 	private CommentMapper commentMapper;
 	
-	@GetMapping("/commentList")
+	@RequestMapping("/comment/commentList")
 	public ModelAndView commentList(PostDTO postDTO) {
 		
 		// 댓글 수량 가져오기
@@ -37,8 +36,8 @@ public class CommentController {
 		return mv;
 	}
 	
-	@PostMapping("/commentWrite")
-	public void commentWrite(CommentDTO commentDTO) {
+	@RequestMapping("/comment/commentWrite")
+	public ModelAndView commentWrite(CommentDTO commentDTO) {
 		String postID = "";
 		
 		postID = Integer.toString(commentDTO.getPost_id());
@@ -48,13 +47,13 @@ public class CommentController {
 		
 		commentMapper.insertComment(commentDTO);
 		
-		/*ModelAndView mv = new ModelAndView();
-		mv.setViewName("/post/detail/{" + postID + "}");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/comment/commentList" );
 		
-		return mv;*/
+		return mv;
 	}
 	
-	@GetMapping("/commentDel")
+	@RequestMapping("/comment/commentDel")
 	public ModelAndView commentDelete(CommentDTO commentDTO) {
 		commentMapper.deleteComment(commentDTO);
 		
@@ -64,7 +63,7 @@ public class CommentController {
 		return mv;
 	}
 	
-	@GetMapping("/commentUpdateForm")
+	@RequestMapping("/commentUpdateForm")
 	public ModelAndView getComment(CommentDTO commentDTO) {
 		commentDTO = commentMapper.getComment(commentDTO);
 		
@@ -75,7 +74,7 @@ public class CommentController {
 		return mv;
 	}
 	
-	@PostMapping("/commentUpdate")
+	@RequestMapping("/comment/commentUpdate")
 	public ModelAndView updateComment(CommentDTO commentDTO) {
 		commentMapper.updateComment(commentDTO);
 		

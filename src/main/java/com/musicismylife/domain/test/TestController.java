@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 public class TestController {
+	
 	@Autowired
 	private TestMapper  testMapper;
 	
@@ -41,8 +41,7 @@ public class TestController {
 		TestDTO post = testMapper.getPost(postID);
 	    model.addAttribute("post", post);
 		System.out.println(post);
-		return "/viewTestDetail";
-	
 		
+		return "/viewTestDetail";
 	}
 }

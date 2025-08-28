@@ -8,7 +8,7 @@ import com.musicismylife.domain.post.PostDTO;
 public interface CommentMapper {
 	
 	List<CommentDTO> getCommentList(PostDTO postDTO);
-
+	
 	int getCommentCount(PostDTO postDTO);
 
 	void insertComment(CommentDTO commentDTO);
