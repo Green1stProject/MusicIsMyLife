@@ -38,7 +38,7 @@
 	  let doCheck = () => {
 		  let contents = document.getElementsByTagName("textarea")[0];
 		  
-		  if(contents.value == ''){
+		  if(contents.value.length == 0){
 			  alert('댓글내용을 입력해주세요');
 			  contents.focus();
 			  return false;

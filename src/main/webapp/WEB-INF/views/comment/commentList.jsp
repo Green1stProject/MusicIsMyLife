@@ -51,7 +51,7 @@
 		  <!--  ///// 댓글쓰기란 ///// -->
 		  <c:if test="${ login.member_id != null }">
 		    <div>
-		      <form action="/comment/commentWrite" method="post"> <!-- 이것도 수정함ㅋㅋㅋ -->
+		      <form action="/comment/commentWrite" method="post" onsubmit="return doCheck();"> <!-- 이것도 수정함ㅋㅋㅋ -->
 		        <input type="hidden" name="post_id" value="${ post.POST_ID }"/> <!--  게시글 번호가져오기 -->
 		        <input type="hidden" name="member_id" value="${ login.member_id }" />
 		        <textarea name="content" placeholder="댓글을 입력해주세요"></textarea>
@@ -83,5 +83,17 @@
 		    </c:forEach>
 		  </div>
   </main>
+  <script>
+    let doCheck = () => {
+      let contents = document.getElementsByTagName("textarea")[0];
+      
+      if(contents.value.length == 0){
+        alert('댓글내용을 입력해주세요');
+        contents.focus();
+        return false;
+      }
+      return true;
+    }
+  </script>
 </body>
 </html>
