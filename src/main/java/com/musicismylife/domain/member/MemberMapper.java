@@ -18,10 +18,10 @@ public interface MemberMapper {
 	void updateMember(MemberDTO memberDTO);
 
 	// 아이디 중복체크
-	MemberDTO VariableId(String userId);
+	MemberDTO VariableId(String member_id);
 	
 	// 닉네임 중복체크
-	MemberDTO VariableNickName(String userNickName);
+	MemberDTO VariableNickName(String member_nickname);
 	
 	// 비밀번호 수정
 	void updateKey(String member_id, String member_pw);
