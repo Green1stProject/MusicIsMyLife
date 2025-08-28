@@ -144,10 +144,10 @@
   <div class="main">
     <div class="head">Music is MyLife</div>
     <div class="box"><input type="text" name="member_id" placeholder="아이디" /></div><div></div>
-    <div class="box"><input type="password" name="member_pw" placeholder="비밀번호" /></div>
-    <c:if test="${param.logTag eq 'fail'}">
+    <div class="box"><input type="password" name="member_pw" placeholder="비밀번호" /></div><div></div>
+    <!--<c:if test="${param.logTag eq 'fail'}">
     <div class="signup-link">로그인 정보가 일치하지 않습니다.</div>
-    </c:if> 
+    </c:if> -->
     <input type="submit" value="로그인" />
 		<div class="signup-link">아직 회원이 아니신가요? <a href="/member/register">회원가입</a></div>
   </div>
@@ -157,7 +157,6 @@
 /** init */
 let doMsg = () => {
   let el, els = document.querySelectorAll('.box');
-  
   let url = location.href;
   let queryString = url.split("?")[1];
   
@@ -181,6 +180,12 @@ let doMsg = () => {
       let msg = e.target.parentElement.nextElementSibling;
       msg.innerText = '';
     }
+  }
+  
+  // 로그인 실패시 메시지 보여주기(패스워드 메시지 칸에 보여줌)
+  if( queryString == 'logTag=fail'){
+	  let msg = el.parentElement.nextElementSibling;
+    msg.innerText = '로그인 정보가 일치하지 않습니다.';  
   }
 } // end of ## init
 
