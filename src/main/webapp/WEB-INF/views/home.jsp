@@ -166,7 +166,7 @@ pageEncoding="UTF-8"%>
           플랫폼입니다.
         </h3>
       </div>
-      <a href="/viewTest">입장하기</a><br />
+      <a href="/post/view">입장하기</a><br />
       <a href="/member/login">로그인</a><br />
       <a href="/member/register">회원가입</a><br />
       <hr />

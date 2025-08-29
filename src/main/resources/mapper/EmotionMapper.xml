@@ -30,8 +30,9 @@
   
   <!-- 감정 코드로 단일 감정 조회 -->
   <select id="getEmotionByCode" parameterType="String" resultType="com.musicismylife.domain.emotion.EmotionDTO">
-    SELECT EMOTION_CODE, DESCRIPTION, YOUTUBE_PLAYLIST_LINK
+    SELECT EMOTION_CODE, EMOTION_NAME, DESCRIPTION, YOUTUBE_PLAYLIST_LINK
     FROM EMOTION_CATEGORY
     WHERE EMOTION_CODE = #{emotionCode}
   </select>
+  
 </mapper>

@@ -140,7 +140,7 @@ public class MemberController {
 			session.setAttribute("login", memberDTO);
 	
 			ModelAndView mv = new ModelAndView();
-			mv.setViewName("viewTest");
+			mv.setViewName("/post/view");
 			return mv;
 		} else { // step3-2: DB 조회시 회원이 아닐 경우: 로그인 페이지로 다시 이동
 			ModelAndView mv = new ModelAndView();

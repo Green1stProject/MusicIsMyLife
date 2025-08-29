@@ -26,4 +26,6 @@ public interface MemberMapper {
 	// 비밀번호 수정
 	void updateKey(String member_id, String member_pw);
 
+
+
 }

@@ -9,4 +9,7 @@ public interface EmotionMapper {
 
 	List<EmotionDTO> getEmotionList();
 
+	String getEmotionByCode();
+	
+	EmotionDTO getEmotionByCode(String emotionCode);
 }

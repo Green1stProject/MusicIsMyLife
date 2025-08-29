@@ -57,7 +57,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <div id="sidebar">
   <ul id="category">
-    <li><a href="/viewTest">전체 보기</a></li>
+    <li><a href="/post/view">전체 보기</a></li>
     <c:forEach var="emotion" items="${emotionList}">
       <li>
         <c:set var="description" value="${emotion.DESCRIPTION}" />
@@ -65,7 +65,7 @@ uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
           var="cutDescription"
           value="${fn:substringBefore(description, '(')}"
         />
-        <a href="/viewTest/${emotion.EMOTION_CODE}">${cutDescription}</a>
+        <a href="/post/view/${emotion.EMOTION_CODE}">${cutDescription}</a>
       </li>
     </c:forEach>
   </ul>

@@ -86,60 +86,63 @@
 }
 
 .floating-btn {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(45deg, #6a11cb, #2575fc);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 28px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  transition: all 0.3s ease;
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	width: 60px;
+	height: 60px;
+	background: linear-gradient(45deg, #6a11cb, #2575fc);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 28px;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	z-index: 1000;
+	transition: all 0.3s ease;
 }
 
 .floating-btn:hover {
-  transform: translateY(-5px) rotate(90deg);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+	transform: translateY(-5px) rotate(90deg);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 /* 글쓰기 버튼은 오른쪽 버튼 왼쪽에 위치 */
 .write-btn {
-  position: fixed;
-  bottom: 19px;
-  right: 100px;
-  background: linear-gradient(45deg, #e52e71, #ff8a00);
-  font-size: 18px;
-  font-weight: 700;
-  border-radius: 30px;
-  width: auto;
-  padding: 0 18px;
-  justify-content: center;
-  letter-spacing: -0.03em;
-  user-select: none;
-  text-decoration: none;
-  line-height: 60px; /* 세로 중앙 정렬용 */
-  display: flex; /* 가운데 정렬 */
-  box-shadow: 0 4px 8px rgba(229, 46, 113, 0.5);
-  color: #fff;
+	position: fixed;
+	bottom: 19px;
+	right: 100px;
+	background: linear-gradient(45deg, #e52e71, #ff8a00);
+	font-size: 18px;
+	font-weight: 700;
+	border-radius: 30px;
+	width: auto;
+	padding: 0 18px;
+	justify-content: center;
+	letter-spacing: -0.03em;
+	user-select: none;
+	text-decoration: none;
+	line-height: 60px; /* 세로 중앙 정렬용 */
+	display: flex; /* 가운데 정렬 */
+	box-shadow: 0 4px 8px rgba(229, 46, 113, 0.5);
+	color: #fff;
 }
 
 .write-btn:hover {
-  background: linear-gradient(90deg, #ff3e8d, #e52e71);
-  box-shadow: 0 6px 16px rgba(255, 62, 141, 0.7);
-  transform: translateY(-5px);
+	background: linear-gradient(90deg, #ff3e8d, #e52e71);
+	box-shadow: 0 6px 16px rgba(255, 62, 141, 0.7);
+	transform: translateY(-5px);
 }
 </style>
 
 
 <div class="floating-btn" id="floatingBtn">+</div>
-<a href="/post/write" class="floating-btn write-btn">글쓰기</a>
+<c:if test="${ login.member_id != null }">
+	<a href="/post/write/${login.member_id}" class="floating-btn write-btn">글쓰기</a>
+</c:if>
+
 
 
 <div class="modal-background" id="modalBackground"></div>
