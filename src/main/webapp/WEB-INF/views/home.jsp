@@ -139,7 +139,7 @@ pageEncoding="UTF-8"%>
           #e52e71,
           transparent
         );
-        opacity: 0.75;
+        opacity: 0.8;
       }
 
       @keyframes titleJump {
