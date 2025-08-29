@@ -6,7 +6,6 @@ import com.musicismylife.domain.post.PostDTO;
 
 @Mapper
 public interface CommentMapper {
-	
     List<CommentDTO> getCommentList(String post_id);
     
     int getCommentCount(String post_id);

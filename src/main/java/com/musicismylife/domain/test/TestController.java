@@ -43,7 +43,6 @@ public class TestController {
 	@RequestMapping("/post/detail/{postID}")
 	public String showPostDetail(@PathVariable String postID, Model model) {
 	    System.out.println("글번호: " + postID);
-	    
 	    TestDTO post = testMapper.getPost(postID);
 	    
 	    // 댓글 목록이랑  댓글 수 가져와서 모델에 추가하셈...

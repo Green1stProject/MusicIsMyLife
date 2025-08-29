@@ -1,21 +1,24 @@
 package com.musicismylife.domain.comment;
 
 import java.util.List;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import com.musicismylife.domain.post.PostDTO;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequestMapping("/comment")
 public class CommentController {
 
    @Autowired
-   private CommentMapper commentMapper;
 
+   private CommentMapper commentMapper;
    @GetMapping("/commentList")
    public ModelAndView commentList(@RequestParam String post_id) { // PostDTO를 post_id로 바꿨음ㅋㅋ 매퍼에서 String을 받으니까
        
