@@ -126,7 +126,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
       /* 정렬 */
       .post-list tbody td:nth-child(1), /* 번호 */
-	  .post-list tbody td:nth-child(6) /* 조회수 */ {
+    .post-list tbody td:nth-child(6) /* 조회수 */ {
         text-align: center;
         font-variant-numeric: tabular-nums;
         font-weight: 500;

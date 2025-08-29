@@ -134,15 +134,19 @@ public class MemberController {
 		// step2: DB 조회
 		MemberDTO memberDTO = memberMapper.login(member_id, member_pw);
 		
-		// step3: 다른페이지에서 볼수있도록 session 에 저장
-		HttpSession session  =  request.getSession();
-		session.setAttribute("login", memberDTO);
-
-		// step4: ======= 돌아갈 주소 설정: 마이페이지로 이동 (추후 페이지 정해지면 변경하기) =======/
-		ModelAndView mv = new ModelAndView();
-		//mv.setViewName("member/testmain");
-		mv.setViewName("viewTest");
-		return mv;
+		// step3-1: DB 조회시 회원일 경우: 세션저장, 메인페이지로 이동
+		if ( memberDTO != null ) {
+			HttpSession session  =  request.getSession();
+			session.setAttribute("login", memberDTO);
+	
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("viewTest");
+			return mv;
+		} else { // step3-2: DB 조회시 회원이 아닐 경우: 로그인 페이지로 다시 이동
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("redirect:/member/login?logTag=fail");
+			return mv;
+		}
 	}
 	
 	@RequestMapping("/logout")

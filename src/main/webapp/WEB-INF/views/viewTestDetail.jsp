@@ -3,6 +3,7 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
+<<<<<<< HEAD
     <meta charset="UTF-8" />
     <title>Insert title here</title>
     <link rel="icon" type="image/ico" href="/img/favicon.ico" />
@@ -21,6 +22,21 @@ css
         font-family: "Noto Sans KR", "맑은 고딕", Arial, sans-serif;
         color: #333;
       }
+=======
+	  <meta charset="UTF-8" />
+	  <title>Insert title here</title>
+	  <link rel="icon" type="image/ico" href="/img/favicon.ico" />
+	  <link rel="stylesheet" href="/css/common.css" />
+	  <style type="text/css">
+			/* 전체 게시글 컨테이너 */
+			#postContainer {
+			        width: 90%;
+			        max-width: 900px;
+			        margin: 40px auto;
+			        font-family: "Noto Sans KR", "맑은 고딕", Arial, sans-serif;
+			        color: #333;
+			      }
+>>>>>>> fb95ae079339359b5c15e743a878e8e436dd7426
 
       /* 헤더: 뒤로가기 버튼, 제목, 유튜브링크 한 줄에 딱 정렬 */
       #titleContainer {
@@ -171,4 +187,8 @@ css
       });
     </script>
   </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> fb95ae079339359b5c15e743a878e8e436dd7426
