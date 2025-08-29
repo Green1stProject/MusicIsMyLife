@@ -58,15 +58,13 @@
 				, updated_at = sysdate
 	    WHERE member_id =  #{ member_id } 
     </update>
-
-    <!-- 회원비밀번호 수정 -->
-    <update id="updateKey">
-	    UPDATE members
-	    SET 
-	        member_pw = #{ member_pw }
-	      , updated_at = sysdate
-	    WHERE member_id =  #{ member_id } 
-    </update>
+    
+    <!-- updateKey는 이제 @Param으로 파라미터가 바인딩하기 -->
+		<update id="updateKey">
+		    UPDATE members
+		    SET member_pw = #{member_pw}, updated_at = sysdate
+		    WHERE member_id = #{member_id}
+		</update>
     
     <!-- 회원 삭제 -->
     <delete id="deleteMember" parameterType="int">
