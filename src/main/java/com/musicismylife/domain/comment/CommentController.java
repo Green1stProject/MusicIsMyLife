@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
+@RequestMapping("/comment")
 public class CommentController {
 
    @Autowired
-   private CommentMapper commentMapper;
 
+   private CommentMapper commentMapper;
    @GetMapping("/commentList")
    public ModelAndView commentList(@RequestParam String post_id) { // PostDTO를 post_id로 바꿨음ㅋㅋ 매퍼에서 String을 받으니까
        
