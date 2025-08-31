@@ -51,7 +51,7 @@ public class PostController {
 	
 	@RequestMapping("/post/detail/{postID}")
 	public String showPostDetail(@PathVariable String postID, Model model) {
-	    System.out.println("글번호: " + postID);
+      System.out.println("글번호: " + postID);
 	    PostDTO post = postMapper.getPost(postID);
 	 // 조회수 증가 처리 추가
 	    postMapper.increaseViewCount(postID);
@@ -95,5 +95,37 @@ public class PostController {
 		return "/post/view";
 	}
 	
+
+  // 글 수정 페이지로 이동
+@RequestMapping("/post/edit/{postID}")
+public String editPost(@PathVariable String postID, Model model) {
+    // 게시글 정보 가져오기
+    PostDTO post = postMapper.getPost(postID);
+    
+    // 모델에 게시글 정보 추가
+    model.addAttribute("post", post);
+    
+    return "/post/edit";
+}
+
+// 글 수정 처리
+@RequestMapping("/post/updatePost")
+public String updatePost(PostDTO postDTO) {
+    // 게시글 수정 처리
+    postMapper.updatePost(postDTO);
+    
+    // 수정 완료 후 상세 페이지로 리다이렉트
+    return "redirect:/post/detail/" + postDTO.getPOST_ID();
+}
+
+// 글 삭제 처리
+@RequestMapping("/post/delete/{postID}")
+public String deletePost(@PathVariable String postID) {
+    // 게시글 삭제 처리
+    postMapper.deletePost(postID);
+    
+    // 삭제 완료 후 목록 페이지로 리다이렉트
+    return "redirect:/post/view";
+}
 	
 }

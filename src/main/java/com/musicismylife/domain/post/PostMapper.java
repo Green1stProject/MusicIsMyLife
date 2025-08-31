@@ -17,4 +17,7 @@ public interface PostMapper {
 
 	void insertPost(PostDTO postDTO);
 
+  void updatePost(PostDTO postDTO);
+
+  void deletePost(String postID);
 }

@@ -41,4 +41,22 @@
 		VALUES
 		(#{MEMBER_ID}, #{TITLE}, #{CONTENTS}, #{YOUTUBE_LINK}, #{EMOTION_CODE}, sysdate, #{MEMBER_NICKNAME}, #{EMOTION_NAME})
 	</insert>
+
+  <!-- 게시글 수정 -->
+<update id="updatePost" parameterType="com.musicismylife.domain.post.PostDTO">
+    UPDATE POST
+    SET 
+        TITLE = #{TITLE},
+        CONTENTS = #{CONTENTS},
+        YOUTUBE_LINK = #{YOUTUBE_LINK},
+        EMOTION_CODE = #{EMOTION_CODE},
+        EMOTION_NAME = #{EMOTION_NAME},
+        UPDATED_AT = SYSDATE
+    WHERE 
+        POST_ID = #{POST_ID}
+</update>
+
+<delete id="deletePost" parameterType="String">
+    DELETE FROM POST WHERE POST_ID = #{postID}
+</delete>
 </mapper>
