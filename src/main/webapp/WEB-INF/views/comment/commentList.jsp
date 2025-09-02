@@ -106,6 +106,5 @@ input[type="submit"] {
       return true;
     }
   </script>
-	>>>>>>> fb95ae079339359b5c15e743a878e8e436dd7426
 </body>
 </html>
